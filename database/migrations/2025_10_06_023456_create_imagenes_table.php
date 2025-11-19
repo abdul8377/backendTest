@@ -11,20 +11,20 @@ return new class extends Migration
         Schema::create('imagenes', function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            // Alcance polimórfico (Proyecto/Evento/u otro)
+            // Relación polimórfica
             $table->unsignedBigInteger('imageable_id');
-            $table->string('imageable_type');
+            $table->string('imageable_type', 255);
 
-            // Ubicación del archivo
-            $table->string('disk');                 // p.ej. public, s3, local
-            $table->string('path', 1024);           // ruta dentro del disk
-            $table->string('url', 2048)->nullable();// URL absoluta opcional (CDN, S3 firmado, etc.)
+            // Ubicación del archivo - tamaños ajustados para índices MySQL
+            $table->string('disk', 64);                  // antes: 255
+            $table->string('path', 512);                 // antes: 1024 (causaba error de índice)
+            $table->string('url', 2048)->nullable();
 
             // Metadatos
             $table->string('titulo')->nullable();
             $table->enum('visibilidad', ['PUBLICA', 'PRIVADA', 'RESTRINGIDA'])->default('PRIVADA');
 
-            // Autor (quien sube)
+            // Autor
             $table->unsignedBigInteger('subido_por');
             $table->foreign('subido_por')
                 ->references('id')->on('users')
@@ -35,7 +35,9 @@ return new class extends Migration
             $table->index(['imageable_type', 'imageable_id']);
             $table->index('disk');
             $table->index('visibilidad');
-            $table->unique(['disk', 'path']); // evita duplicar el mismo archivo en el mismo disk
+
+            // Índice único corregido (ya no rompe MySQL)
+            $table->unique(['disk', 'path'], 'imagenes_disk_path_unique');
 
             $table->timestamps();
         });
