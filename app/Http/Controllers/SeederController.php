@@ -7,13 +7,11 @@ use Illuminate\Support\Facades\Artisan;
 
 class SeederController extends Controller
 {
-    /**
-     * Ejecuta TODOS los seeders de DatabaseSeeder.
-     */
     public function run()
     {
+        // Ejecutar TODOS los seeders registrados en DatabaseSeeder
         Artisan::call('db:seed', [
-            '--force' => true,
+            '--force' => true, // necesario en producción
         ]);
 
         return response()->json([
@@ -22,11 +20,9 @@ class SeederController extends Controller
         ]);
     }
 
-    /**
-     * Ejecuta SOLO el UserSeeder.
-     */
     public function runUserSeeder()
     {
+        // Ejemplo: ejecutar solo un seeder específico
         Artisan::call('db:seed', [
             '--class' => 'UserSeeder',
             '--force' => true,
@@ -34,35 +30,6 @@ class SeederController extends Controller
 
         return response()->json([
             'message' => 'UserSeeder ejecutado correctamente',
-            'output'  => Artisan::output(),
-        ]);
-    }
-
-    /**
-     * Railway NO permite storage:link → prevenir error 500
-     */
-    public function runStorageLink()
-    {
-        return response()->json([
-            'message' => 'Railway no permite ejecutar storage:link (symlinks bloqueados).',
-            'output'  => null,
-        ]);
-    }
-
-    /**
-     * Ejecuta cualquier comando personalizado.
-     * EJ: POST { "command": "cache:clear" }
-     */
-    public function runAnyCommand(Request $request)
-    {
-        $request->validate([
-            'command' => 'required|string',
-        ]);
-
-        Artisan::call($request->command);
-
-        return response()->json([
-            'message' => "Comando '{$request->command}' ejecutado correctamente",
             'output'  => Artisan::output(),
         ]);
     }

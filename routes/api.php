@@ -531,14 +531,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
 });
 
 
-// Ejecutar todos los seeders
+// Ejecutar TODOS los seeders del DatabaseSeeder
 Route::post('/tools/seeders/run', [SeederController::class, 'run']);
 
-// Ejecutar user seeder
+// Ejecutar solo el UserSeeder
 Route::post('/tools/seeders/run-user', [SeederController::class, 'runUserSeeder']);
-
-// Ejecutar storage:link (deshabilitado por Railway)
-Route::post('/tools/artisan/storage-link', [SeederController::class, 'runStorageLink']);
-
-// Ejecutar CUALQUIER comando artisan
-Route::post('/tools/artisan/run', [SeederController::class, 'runAnyCommand']);
