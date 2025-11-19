@@ -39,21 +39,19 @@ class SeederController extends Controller
     }
 
     /**
-     * Ejecuta php artisan storage:link
+     * Railway NO permite storage:link → prevenir error 500
      */
     public function runStorageLink()
     {
-        Artisan::call('storage:link');
-
         return response()->json([
-            'message' => 'storage:link ejecutado correctamente',
-            'output'  => Artisan::output(),
+            'message' => 'Railway no permite ejecutar storage:link (symlinks bloqueados).',
+            'output'  => null,
         ]);
     }
 
     /**
-     * Ejecuta cualquier comando personalizado (opcional).
-     * EJ: { "command": "cache:clear" }
+     * Ejecuta cualquier comando personalizado.
+     * EJ: POST { "command": "cache:clear" }
      */
     public function runAnyCommand(Request $request)
     {
