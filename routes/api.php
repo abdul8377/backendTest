@@ -7,6 +7,8 @@ use App\Http\Controllers\Api\Matricula\MatriculaRegistroController;
 use App\Http\Controllers\Api\Reportes\HorasPorPeriodoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\File;
+
 
 // ─────────────────────────────────────────────────────────────────────────────
 // CONTROLADORES
@@ -536,3 +538,27 @@ Route::post('/tools/seeders/run', [SeederController::class, 'run']);
 
 // Ejecutar solo el UserSeeder
 Route::post('/tools/seeders/run-user', [SeederController::class, 'runUserSeeder']);
+
+
+
+Route::get('/debug/laravel-log', function () {
+    $path = storage_path('logs/laravel.log');
+
+    if (!File::exists($path)) {
+        return response()->json([
+            'ok' => false,
+            'message' => 'No se encontró el archivo de log',
+            'path' => $path,
+        ], 404);
+    }
+
+    // Devolver solo las últimas ~200 líneas para que no sea enorme
+    $content = File::get($path);
+    $lines = explode("\n", $content);
+    $lastLines = array_slice($lines, -200);
+
+    return response()->json([
+        'ok' => true,
+        'lines' => $lastLines,
+    ]);
+});
