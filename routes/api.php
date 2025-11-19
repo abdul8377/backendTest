@@ -530,7 +530,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     });
 });
 
-Route::middleware(['auth:sanctum'])->group(function () {
 
     // Ejecutar todos los seeders
     Route::post('/tools/seeders/run', [SeederController::class, 'run']);
@@ -543,4 +542,4 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     // Ejecutar CUALQUIER comando (opcional)
     Route::post('/tools/artisan/run', [SeederController::class, 'runAnyCommand']);
-});
+
