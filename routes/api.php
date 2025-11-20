@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\EpSede\EpSedeStaffController;
 use App\Http\Controllers\Api\Matricula\MatriculaManualController;
 use App\Http\Controllers\Api\Matricula\MatriculaRegistroController;
 use App\Http\Controllers\Api\Reportes\HorasPorPeriodoController;
+use App\Http\Controllers\Api\Vm\AlumnoFeedController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\File;
@@ -26,6 +27,7 @@ use App\Http\Controllers\Api\Universidad\UniversidadController;
 use App\Http\Controllers\Api\Academico\EscuelaProfesionalApiController;
 use App\Http\Controllers\Api\Academico\FacultadApiController;
 use App\Http\Controllers\Api\Academico\SedeApiController;
+use App\Http\Controllers\Api\Alumno\DashboardController;
 use App\Http\Controllers\Api\Reportes\ReporteAvanceController;
 use App\Http\Controllers\Api\Reportes\ReporteHorasController;
 
@@ -40,9 +42,11 @@ use App\Http\Controllers\Api\Vm\AgendaController;
 use App\Http\Controllers\Api\Vm\AsistenciasController;
 use App\Http\Controllers\Api\Vm\AsistenciasController as VmAsistenciasController;
 use App\Http\Controllers\Api\Vm\CategoriaEventoController;
+use App\Http\Controllers\Api\Vm\EventoFullController;
 use App\Http\Controllers\Api\Vm\EventoImagenController;
 use App\Http\Controllers\Api\Vm\ImportHorasHistoricasController;
 use App\Http\Controllers\Api\Vm\InscripcionEventoController;
+use App\Http\Controllers\Api\Vm\ProyectoFullController;
 use App\Http\Controllers\SeederController;
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -533,54 +537,17 @@ Route::middleware(['auth:sanctum'])->group(function () {
 });
 
 
-// Ejecutar TODOS los seeders del DatabaseSeeder
-Route::post('/tools/seeders/run', [SeederController::class, 'run']);
-
-// Ejecutar solo el UserSeeder
-Route::post('/tools/seeders/run-user', [SeederController::class, 'runUserSeeder']);
 
 
-
-Route::get('/debug/laravel-log', function () {
-    $path = storage_path('logs/laravel.log');
-
-    if (!File::exists($path)) {
-        return response()->json([
-            'ok' => false,
-            'message' => 'No se encontró el archivo de log',
-            'path' => $path,
-        ], 404);
-    }
-
-    // Devolver solo las últimas ~200 líneas para que no sea enorme
-    $content = File::get($path);
-    $lines = explode("\n", $content);
-    $lastLines = array_slice($lines, -200);
-
-    return response()->json([
-        'ok' => true,
-        'lines' => $lastLines,
-    ]);
+Route::middleware('auth:sanctum')->prefix('alumno')->group(function () {
+    Route::get('feed', [DashboardController::class, 'index']);
+    // (opcionales)
+    Route::get('eventos', [DashboardController::class, 'eventos']);
+    Route::get('proyectos', [DashboardController::class, 'proyectos']);
 });
 
-Route::post('/debug/migrate-fresh', function (Request $request) {
-
-    // Ejecutar migración fresh SIN TOKEN
-    Artisan::call('migrate:fresh', [
-        '--force' => true
-    ]);
-
-    $output = Artisan::output();
-
-    return response()->json([
-        'ok' => true,
-        'message' => 'migrate:fresh ejecutado correctamente',
-        'output' => $output,
-    ]);
-});
-
-
-Route::get('/debug/migrate', function () {
-    Artisan::call('migrate', ['--force' => true]);
-    return Artisan::output();
+// Inscripciones (ya existentes)
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('vm/eventos/{evento}/inscribirse', [InscripcionEventoController::class, 'inscribirEvento']);
+    Route::post('vm/proyectos/{proyecto}/inscribirse', [InscripcionProyectoController::class, 'inscribirProyecto']);
 });
