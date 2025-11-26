@@ -33,14 +33,14 @@ class EstadoService
             } else {
                 Log::warning('[EstadoService] Owner no soportado', [
                     'owner_type' => get_class($owner),
-                    'owner_id'   => $owner->id ?? null,
+                    'owner_id' => $owner->id ?? null,
                 ]);
             }
         } catch (\Throwable $e) {
             Log::error('[EstadoService] recalcOwner falló', [
                 'owner_type' => get_class($owner),
-                'owner_id'   => $owner->id ?? null,
-                'msg'        => $e->getMessage(),
+                'owner_id' => $owner->id ?? null,
+                'msg' => $e->getMessage(),
             ]);
             throw $e;
         }
@@ -49,21 +49,25 @@ class EstadoService
     /** PROCESO */
     protected function recalcProceso(VmProceso $proceso): void
     {
-        if ($proceso->estado === 'CANCELADO') return;
+        if ($proceso->estado === 'CANCELADO')
+            return;
         $now = now();
 
         // (Opcional) autocorrección de sesiones si se habilita por config
         if (config('vm.auto_normalize_sessions', true)) {
             try {
-                [$st,$cl] = $this->normalizeSesionesOwner($proceso, $now);
+                [$st, $cl] = $this->normalizeSesionesOwner($proceso, $now);
                 if ($st || $cl) {
                     Log::info('[EstadoService] Normalize sesiones PROCESO', [
-                        'proceso_id' => $proceso->id, 'started' => $st, 'closed' => $cl
+                        'proceso_id' => $proceso->id,
+                        'started' => $st,
+                        'closed' => $cl
                     ]);
                 }
             } catch (\Throwable $e) {
                 Log::warning('[EstadoService] normalizeSesionesOwner proceso falló', [
-                    'proceso_id' => $proceso->id, 'msg' => $e->getMessage(),
+                    'proceso_id' => $proceso->id,
+                    'msg' => $e->getMessage(),
                 ]);
             }
         }
@@ -77,25 +81,39 @@ class EstadoService
             // Correcciones de consistencia
             $fixReason = null;
             if ($new === 'PLANIFICADO' && $total > 0) {
-                if ($hasPast && $hasFuture) { $new = 'EN_CURSO'; $fixReason = 'fix: pasadas y futuras'; }
-                elseif ($hasPast && !$hasFuture) { $new = 'CERRADO'; $fixReason = 'fix: solo pasadas'; }
+                if ($hasPast && $hasFuture) {
+                    $new = 'EN_CURSO';
+                    $fixReason = 'fix: pasadas y futuras';
+                } elseif ($hasPast && !$hasFuture) {
+                    $new = 'CERRADO';
+                    $fixReason = 'fix: solo pasadas';
+                }
             }
-            if ($new !== 'EN_CURSO' && $hasRun) { $new = 'EN_CURSO'; $fixReason = $fixReason ?: 'fix: hay EN_CURSO'; }
+            if ($new !== 'EN_CURSO' && $hasRun) {
+                $new = 'EN_CURSO';
+                $fixReason = $fixReason ?: 'fix: hay EN_CURSO';
+            }
 
             if ($new !== $proceso->estado) {
                 $old = $proceso->estado;
                 $proceso->update(['estado' => $new]);
 
                 Log::info('[EstadoService] Proceso actualizado', [
-                    'proceso_id' => $proceso->id, 'from' => $old, 'to' => $new,
-                    'mi' => $mi?->toDateTimeString(), 'mf' => $mf?->toDateTimeString(),
-                    'hasPast' => $hasPast, 'hasFuture' => $hasFuture, 'fix' => $fixReason,
+                    'proceso_id' => $proceso->id,
+                    'from' => $old,
+                    'to' => $new,
+                    'mi' => $mi?->toDateTimeString(),
+                    'mf' => $mf?->toDateTimeString(),
+                    'hasPast' => $hasPast,
+                    'hasFuture' => $hasFuture,
+                    'fix' => $fixReason,
                     'now' => $now->toDateTimeString(),
                 ]);
             }
         } catch (\Throwable $e) {
             Log::error('[EstadoService] recalcProceso error', [
-                'proceso_id' => $proceso->id, 'msg' => $e->getMessage(),
+                'proceso_id' => $proceso->id,
+                'msg' => $e->getMessage(),
             ]);
             throw $e;
         }
@@ -104,7 +122,8 @@ class EstadoService
     /** PROYECTO */
     protected function recalcProyecto(VmProyecto $proyecto): void
     {
-        if ($proyecto->estado === 'CANCELADO') return;
+        if ($proyecto->estado === 'CANCELADO')
+            return;
         $now = now();
 
         try {
@@ -120,25 +139,39 @@ class EstadoService
 
             $fixReason = null;
             if ($new === 'PLANIFICADO' && $total > 0) {
-                if ($hasPast && $hasFuture) { $new = 'EN_CURSO'; $fixReason = 'fix: pasadas y futuras'; }
-                elseif ($hasPast && !$hasFuture) { $new = 'CERRADO'; $fixReason = 'fix: solo pasadas'; }
+                if ($hasPast && $hasFuture) {
+                    $new = 'EN_CURSO';
+                    $fixReason = 'fix: pasadas y futuras';
+                } elseif ($hasPast && !$hasFuture) {
+                    $new = 'CERRADO';
+                    $fixReason = 'fix: solo pasadas';
+                }
             }
-            if ($new !== 'EN_CURSO' && $hasRun) { $new = 'EN_CURSO'; $fixReason = $fixReason ?: 'fix: hay EN_CURSO'; }
+            if ($new !== 'EN_CURSO' && $hasRun) {
+                $new = 'EN_CURSO';
+                $fixReason = $fixReason ?: 'fix: hay EN_CURSO';
+            }
 
             if ($new !== $proyecto->estado) {
                 $old = $proyecto->estado;
                 $proyecto->update(['estado' => $new]);
 
                 Log::info('[EstadoService] Proyecto actualizado', [
-                    'proyecto_id' => $proyecto->id, 'from' => $old, 'to' => $new,
-                    'mi' => $mi?->toDateTimeString(), 'mf' => $mf?->toDateTimeString(),
-                    'hasPast' => $hasPast, 'hasFuture' => $hasFuture, 'fix' => $fixReason,
+                    'proyecto_id' => $proyecto->id,
+                    'from' => $old,
+                    'to' => $new,
+                    'mi' => $mi?->toDateTimeString(),
+                    'mf' => $mf?->toDateTimeString(),
+                    'hasPast' => $hasPast,
+                    'hasFuture' => $hasFuture,
+                    'fix' => $fixReason,
                     'now' => $now->toDateTimeString(),
                 ]);
             }
         } catch (\Throwable $e) {
             Log::error('[EstadoService] recalcProyecto error', [
-                'proyecto_id' => $proyecto->id, 'msg' => $e->getMessage(),
+                'proyecto_id' => $proyecto->id,
+                'msg' => $e->getMessage(),
             ]);
             throw $e;
         }
@@ -147,20 +180,24 @@ class EstadoService
     /** EVENTO */
     protected function recalcEvento(VmEvento $evento): void
     {
-        if ($evento->estado === 'CANCELADO') return;
+        if ($evento->estado === 'CANCELADO')
+            return;
         $now = now();
 
         if (config('vm.auto_normalize_sessions', true)) {
             try {
-                [$st,$cl] = $this->normalizeSesionesOwner($evento, $now);
+                [$st, $cl] = $this->normalizeSesionesOwner($evento, $now);
                 if ($st || $cl) {
                     Log::info('[EstadoService] Normalize sesiones EVENTO', [
-                        'evento_id' => $evento->id, 'started' => $st, 'closed' => $cl
+                        'evento_id' => $evento->id,
+                        'started' => $st,
+                        'closed' => $cl
                     ]);
                 }
             } catch (\Throwable $e) {
                 Log::warning('[EstadoService] normalizeSesionesOwner evento falló', [
-                    'evento_id' => $evento->id, 'msg' => $e->getMessage(),
+                    'evento_id' => $evento->id,
+                    'msg' => $e->getMessage(),
                 ]);
             }
         }
@@ -173,25 +210,39 @@ class EstadoService
 
             $fixReason = null;
             if ($new === 'PLANIFICADO' && $total > 0) {
-                if ($hasPast && $hasFuture) { $new = 'EN_CURSO'; $fixReason = 'fix: pasadas y futuras'; }
-                elseif ($hasPast && !$hasFuture) { $new = 'CERRADO'; $fixReason = 'fix: solo pasadas'; }
+                if ($hasPast && $hasFuture) {
+                    $new = 'EN_CURSO';
+                    $fixReason = 'fix: pasadas y futuras';
+                } elseif ($hasPast && !$hasFuture) {
+                    $new = 'CERRADO';
+                    $fixReason = 'fix: solo pasadas';
+                }
             }
-            if ($new !== 'EN_CURSO' && $hasRun) { $new = 'EN_CURSO'; $fixReason = $fixReason ?: 'fix: hay EN_CURSO'; }
+            if ($new !== 'EN_CURSO' && $hasRun) {
+                $new = 'EN_CURSO';
+                $fixReason = $fixReason ?: 'fix: hay EN_CURSO';
+            }
 
             if ($new !== $evento->estado) {
                 $old = $evento->estado;
                 $evento->update(['estado' => $new]);
 
                 Log::info('[EstadoService] Evento actualizado', [
-                    'evento_id' => $evento->id, 'from' => $old, 'to' => $new,
-                    'mi' => $mi?->toDateTimeString(), 'mf' => $mf?->toDateTimeString(),
-                    'hasPast' => $hasPast, 'hasFuture' => $hasFuture, 'fix' => $fixReason,
+                    'evento_id' => $evento->id,
+                    'from' => $old,
+                    'to' => $new,
+                    'mi' => $mi?->toDateTimeString(),
+                    'mf' => $mf?->toDateTimeString(),
+                    'hasPast' => $hasPast,
+                    'hasFuture' => $hasFuture,
+                    'fix' => $fixReason,
                     'now' => $now->toDateTimeString(),
                 ]);
             }
         } catch (\Throwable $e) {
             Log::error('[EstadoService] recalcEvento error', [
-                'evento_id' => $evento->id, 'msg' => $e->getMessage(),
+                'evento_id' => $evento->id,
+                'msg' => $e->getMessage(),
             ]);
             throw $e;
         }
@@ -200,9 +251,12 @@ class EstadoService
     /** Regla base por ventana temporal */
     private function stateFromWindow(int $total, ?Carbon $mi, ?Carbon $mf, Carbon $now): string
     {
-        if ($total === 0 || !$mi || !$mf) return 'PLANIFICADO';
-        if ($now->lt($mi))                return 'PLANIFICADO';
-        if ($now->gte($mf))               return 'CERRADO';
+        if ($total === 0 || !$mi || !$mf)
+            return 'PLANIFICADO';
+        if ($now->lt($mi))
+            return 'PLANIFICADO';
+        if ($now->gte($mf))
+            return 'CERRADO';
         return 'EN_CURSO';
     }
 
@@ -213,29 +267,58 @@ class EstadoService
      */
     private function computeWindowAndFlags(EloquentBuilder|Relation $sessionsQ, Carbon $now): array
     {
-        // NOTA: usamos SQL con DATE (fecha) + TIME (hora_*), sin concatenaciones en PHP
+        // NOTA: usamos SQL compatible con SQLite y MySQL
         $qb = $sessionsQ instanceof Relation ? $sessionsQ->getQuery() : $sessionsQ;
         $nowStr = $now->format('Y-m-d H:i:s');
 
-        $agg = (clone $qb)
-            ->selectRaw("
-                COUNT(*) AS total,
-                MIN(TIMESTAMP(CONCAT(CAST(fecha AS CHAR), ' ', CAST(hora_inicio AS CHAR)))) AS mi,
-                MAX(TIMESTAMP(CONCAT(CAST(fecha AS CHAR), ' ', CAST(hora_fin AS CHAR))))    AS mf
-            ")
-            ->first();
+        // Detectar el driver de BD
+        $driver = \Illuminate\Support\Facades\DB::connection()->getDriverName();
+        $isSqlite = $driver === 'sqlite';
 
-        $total = (int) ($agg->total ?? 0);
-        $mi    = $agg->mi ? Carbon::parse($agg->mi) : null;
-        $mf    = $agg->mf ? Carbon::parse($agg->mf) : null;
+        if ($isSqlite) {
+            // SQLite: usa || para concatenación y datetime()
+            // Importante: usar date(fecha) para asegurar formato correcto
+            $agg = (clone $qb)
+                ->selectRaw("
+                    COUNT(*) AS total,
+                    MIN(datetime(date(fecha) || ' ' || hora_inicio)) AS mi,
+                    MAX(datetime(date(fecha) || ' ' || hora_fin))    AS mf
+                ")
+                ->first();
 
-        $hasPast = (clone $qb)
-            ->whereRaw("TIMESTAMP(CONCAT(CAST(fecha AS CHAR), ' ', CAST(hora_fin AS CHAR))) <= ?", [$nowStr])
-            ->exists();
+            $total = (int) ($agg->total ?? 0);
+            $mi = $agg->mi ? Carbon::parse($agg->mi) : null;
+            $mf = $agg->mf ? Carbon::parse($agg->mf) : null;
 
-        $hasFuture = (clone $qb)
-            ->whereRaw("TIMESTAMP(CONCAT(CAST(fecha AS CHAR), ' ', CAST(hora_inicio AS CHAR))) >  ?", [$nowStr])
-            ->exists();
+            $hasPast = (clone $qb)
+                ->whereRaw("datetime(date(fecha) || ' ' || hora_fin) <= ?", [$nowStr])
+                ->exists();
+
+            $hasFuture = (clone $qb)
+                ->whereRaw("datetime(date(fecha) || ' ' || hora_inicio) > ?", [$nowStr])
+                ->exists();
+        } else {
+            // MySQL: usa CONCAT y TIMESTAMP
+            $agg = (clone $qb)
+                ->selectRaw("
+                    COUNT(*) AS total,
+                    MIN(TIMESTAMP(CONCAT(CAST(fecha AS CHAR), ' ', CAST(hora_inicio AS CHAR)))) AS mi,
+                    MAX(TIMESTAMP(CONCAT(CAST(fecha AS CHAR), ' ', CAST(hora_fin AS CHAR))))    AS mf
+                ")
+                ->first();
+
+            $total = (int) ($agg->total ?? 0);
+            $mi = $agg->mi ? Carbon::parse($agg->mi) : null;
+            $mf = $agg->mf ? Carbon::parse($agg->mf) : null;
+
+            $hasPast = (clone $qb)
+                ->whereRaw("TIMESTAMP(CONCAT(CAST(fecha AS CHAR), ' ', CAST(hora_fin AS CHAR))) <= ?", [$nowStr])
+                ->exists();
+
+            $hasFuture = (clone $qb)
+                ->whereRaw("TIMESTAMP(CONCAT(CAST(fecha AS CHAR), ' ', CAST(hora_inicio AS CHAR))) > ?", [$nowStr])
+                ->exists();
+        }
 
         $hasRun = (clone $qb)
             ->where('estado', 'EN_CURSO')
@@ -253,19 +336,41 @@ class EstadoService
             ? $owner->sesiones()->getQuery()
             : $owner->sesiones();
 
-        // 1) PLANIFICADO → EN_CURSO
-        $started = (clone $qb)
-            ->where('estado', 'PLANIFICADO')
-            ->whereRaw("TIMESTAMP(CONCAT(CAST(fecha AS CHAR), ' ', CAST(hora_inicio AS CHAR))) <= ?", [$nowStr])
-            ->whereRaw("TIMESTAMP(CONCAT(CAST(fecha AS CHAR), ' ', CAST(hora_fin AS CHAR))) >  ?", [$nowStr])
-            ->update(['estado' => 'EN_CURSO']);
+        // Detectar el driver de BD
+        $driver = \Illuminate\Support\Facades\DB::connection()->getDriverName();
+        $isSqlite = $driver === 'sqlite';
 
-        // 2) PLANIFICADO|EN_CURSO → CERRADO (evita cierre si fin==inicio en el mismo tick)
-        $closed = (clone $qb)
-            ->whereIn('estado', ['PLANIFICADO', 'EN_CURSO'])
-            ->whereRaw("TIMESTAMP(CONCAT(CAST(fecha AS CHAR), ' ', CAST(hora_fin AS CHAR))) <= ?", [$nowStr])
-            ->whereRaw("TIMESTAMP(CONCAT(CAST(fecha AS CHAR), ' ', CAST(hora_inicio AS CHAR))) <  ?", [$nowStr])
-            ->update(['estado' => 'CERRADO']);
+        if ($isSqlite) {
+            // SQLite: usa || para concatenación y datetime()
+            // 1) PLANIFICADO → EN_CURSO
+            $started = (clone $qb)
+                ->where('estado', 'PLANIFICADO')
+                ->whereRaw("datetime(date(fecha) || ' ' || hora_inicio) <= ?", [$nowStr])
+                ->whereRaw("datetime(date(fecha) || ' ' || hora_fin) > ?", [$nowStr])
+                ->update(['estado' => 'EN_CURSO']);
+
+            // 2) PLANIFICADO|EN_CURSO → CERRADO
+            $closed = (clone $qb)
+                ->whereIn('estado', ['PLANIFICADO', 'EN_CURSO'])
+                ->whereRaw("datetime(date(fecha) || ' ' || hora_fin) <= ?", [$nowStr])
+                ->whereRaw("datetime(date(fecha) || ' ' || hora_inicio) < ?", [$nowStr])
+                ->update(['estado' => 'CERRADO']);
+        } else {
+            // MySQL: usa CONCAT y TIMESTAMP
+            // 1) PLANIFICADO → EN_CURSO
+            $started = (clone $qb)
+                ->where('estado', 'PLANIFICADO')
+                ->whereRaw("TIMESTAMP(CONCAT(CAST(fecha AS CHAR), ' ', CAST(hora_inicio AS CHAR))) <= ?", [$nowStr])
+                ->whereRaw("TIMESTAMP(CONCAT(CAST(fecha AS CHAR), ' ', CAST(hora_fin AS CHAR))) >  ?", [$nowStr])
+                ->update(['estado' => 'EN_CURSO']);
+
+            // 2) PLANIFICADO|EN_CURSO → CERRADO (evita cierre si fin==inicio en el mismo tick)
+            $closed = (clone $qb)
+                ->whereIn('estado', ['PLANIFICADO', 'EN_CURSO'])
+                ->whereRaw("TIMESTAMP(CONCAT(CAST(fecha AS CHAR), ' ', CAST(hora_fin AS CHAR))) <= ?", [$nowStr])
+                ->whereRaw("TIMESTAMP(CONCAT(CAST(fecha AS CHAR), ' ', CAST(hora_inicio AS CHAR))) <  ?", [$nowStr])
+                ->update(['estado' => 'CERRADO']);
+        }
 
         return [$started, $closed];
     }

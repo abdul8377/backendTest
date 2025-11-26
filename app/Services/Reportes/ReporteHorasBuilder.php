@@ -108,7 +108,7 @@ class ReporteHorasBuilder
             ],
             'meta' => [
                 'current_page' => $historial->currentPage(),
-                'per_page'     => $historial->PerPage(),
+                'per_page'     => $historial->perPage(),
                 'total'        => $historial->total(),
                 'last_page'    => $historial->lastPage(),
             ],

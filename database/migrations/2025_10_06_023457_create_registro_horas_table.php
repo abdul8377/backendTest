@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     public function up(): void
     {
         Schema::create('registro_horas', function (Blueprint $table) {
@@ -24,7 +23,7 @@ return new class extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('restrict');
 
-            $table->unsignedBigInteger('periodo_id');
+            $table->unsignedBigInteger('periodo_id')->nullable();
             $table->foreign('periodo_id')
                 ->references('id')->on('periodos_academicos')
                 ->onUpdate('cascade')
@@ -37,7 +36,7 @@ return new class extends Migration
 
             // Estado
             $table->enum('estado', ['PENDIENTE', 'APROBADO', 'RECHAZADO', 'ANULADO'])
-                  ->default('APROBADO'); // al validar asistencia, lo marcamos APROBADO
+                ->default('APROBADO'); // al validar asistencia, lo marcamos APROBADO
 
             // Polimórfica: vínculo a Proyecto/Evento u otros
             $table->unsignedBigInteger('vinculable_id');

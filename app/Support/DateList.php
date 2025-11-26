@@ -9,6 +9,48 @@ use Illuminate\Support\Collection;
 
 class DateList
 {
+    /** Intenta parsear con formatos conocidos (prioriza d/m/Y). Devuelve string Y-m-d o null. */
+    private static function parseDateFlexible(?string $raw): ?string
+    {
+        if (!$raw || trim($raw) === '') return null;
+        $raw = trim($raw);
+
+        $formats = [
+            'Y-m-d', // ISO
+            'd/m/Y', 'd-m-Y', // ES
+            'm/d/Y', 'm-d-Y', // US
+        ];
+
+        foreach ($formats as $fmt) {
+            try {
+                // parsea
+                $dt = \Carbon\Carbon::createFromFormat($fmt, $raw);
+                // valida que NO hubo desbordes ni errores
+                $errors = \DateTime::getLastErrors();
+                if (($errors['warning_count'] ?? 0) === 0 && ($errors['error_count'] ?? 0) === 0) {
+                    return $dt->toDateString();
+                }
+            } catch (\Throwable) {
+                // intenta siguiente formato
+            }
+        }
+
+        // último intento: solo cadenas ISO-like sin ambigüedad (YYYY-MM-DD o YYYY.MM.DD)
+        if (preg_match('/^\d{4}[-.]\d{2}[-.]\d{2}$/', $raw)) {
+            try {
+                $dt = \Carbon\Carbon::parse($raw);
+                // parse simple sin ambigüedad, validamos también errores
+                $errors = \DateTime::getLastErrors();
+                if (($errors['warning_count'] ?? 0) === 0 && ($errors['error_count'] ?? 0) === 0) {
+                    return $dt->toDateString();
+                }
+            } catch (\Throwable) {}
+        }
+
+        return null; // inválida
+    }
+
+
     /**
      * Expande el payload batch a una lista de fechas (YYYY-MM-DD).
      * @param  array $data
@@ -19,17 +61,12 @@ class DateList
         $mode = (string) ($data['mode'] ?? 'list');
 
         if ($mode === 'list') {
-            $fechas = collect($data['fechas'] ?? [])
+            return collect($data['fechas'] ?? [])
                 ->filter(fn($d) => !is_null($d) && $d !== '')
-                ->map(function ($d) {
-                    try { return Carbon::parse($d)->toDateString(); }
-                    catch (\Throwable) { return null; }
-                })
-                ->filter() // quita nulls
+                ->map(fn($d) => self::parseDateFlexible((string)$d))
+                ->filter()    // quita nulls
                 ->unique()
                 ->values();
-
-            return $fechas;
         }
 
         // mode === 'range'
@@ -40,14 +77,24 @@ class DateList
             return collect(); // payload incompleto
         }
 
+        $fiStr = self::parseDateFlexible((string)$fiRaw);
+        $ffStr = self::parseDateFlexible((string)$ffRaw);
+        if (!$fiStr || !$ffStr) {
+            return collect();
+        }
+
         try {
-            $fi = Carbon::parse($fiRaw)->startOfDay();
-            $ff = Carbon::parse($ffRaw)->startOfDay();
+            $fi = Carbon::createFromFormat('Y-m-d', $fiStr)->startOfDay();
+            $ff = Carbon::createFromFormat('Y-m-d', $ffStr)->startOfDay();
         } catch (\Throwable) {
             return collect();
         }
 
-        // Normaliza días de semana (acepta 'LU'..'DO', 'MON'..'SUN', 0..6)
+        if ($fi->gt($ff)) {
+            return collect(); // rango inválido
+        }
+
+        // Normaliza días de semana
         $map = [
             'DO'=>0,'DOM'=>0,'SUN'=>0, 0=>0,
             'LU'=>1,'LUN'=>1,'MON'=>1, 1=>1,

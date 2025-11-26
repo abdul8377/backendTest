@@ -22,12 +22,33 @@ class VmTickCommand extends Command
         $failed = 0;
 
         try {
+            // Helper para obtener SQL compatible
+            $sqlDatetime = function ($colFecha, $colHora) {
+                if (DB::getDriverName() === 'sqlite') {
+                    // SQLite: datetime(date(fecha) || ' ' || hora)
+                    return "datetime(date($colFecha) || ' ' || $colHora)";
+                }
+                // MySQL: TIMESTAMP(CONCAT(fecha, ' ', hora))
+                return "TIMESTAMP(CONCAT($colFecha, ' ', $colHora))";
+            };
+
             // 1) PLANIFICADO → EN_CURSO
             $this->processTransition(
-                function ($q) use ($nowStr) {
+                function ($q) use ($nowStr, $sqlDatetime) {
+                    $dtInicio = $sqlDatetime('fecha', 'hora_inicio');
+                    $dtFin = $sqlDatetime('fecha', 'hora_fin');
+
+                    if (app()->runningInConsole()) {
+                        // Debug query
+                        $sql = $q->clone()->where('estado', 'PLANIFICADO')
+                            ->whereRaw("$dtInicio <= ?", [$nowStr])
+                            ->whereRaw("$dtFin >  ?", [$nowStr])->toSql();
+                        dump($sql, $nowStr);
+                    }
+
                     $q->where('estado', 'PLANIFICADO')
-                      ->whereRaw("TIMESTAMP(CONCAT(fecha,' ',hora_inicio)) <= ?", [$nowStr])
-                      ->whereRaw("TIMESTAMP(CONCAT(fecha,' ',hora_fin)) >  ?", [$nowStr]);
+                        ->whereRaw("$dtInicio <= ?", [$nowStr])
+                        ->whereRaw("$dtFin >  ?", [$nowStr]);
                 },
                 'EN_CURSO',
                 'START',
@@ -38,10 +59,13 @@ class VmTickCommand extends Command
 
             // 2) PLANIFICADO|EN_CURSO → CERRADO
             $this->processTransition(
-                function ($q) use ($nowStr) {
+                function ($q) use ($nowStr, $sqlDatetime) {
+                    $dtInicio = $sqlDatetime('fecha', 'hora_inicio');
+                    $dtFin = $sqlDatetime('fecha', 'hora_fin');
+
                     $q->whereIn('estado', ['PLANIFICADO', 'EN_CURSO'])
-                      ->whereRaw("TIMESTAMP(CONCAT(fecha,' ',hora_fin)) <= ?", [$nowStr])
-                      ->whereRaw("TIMESTAMP(CONCAT(fecha,' ',hora_inicio)) <  ?", [$nowStr]);
+                        ->whereRaw("$dtFin <= ?", [$nowStr])
+                        ->whereRaw("$dtInicio <  ?", [$nowStr]); // Sanity check
                 },
                 'CERRADO',
                 'CLOSE',
@@ -51,7 +75,7 @@ class VmTickCommand extends Command
             );
 
         } catch (\Throwable $e) {
-            $this->error('vm:tick FALLÓ: '.$e->getMessage());
+            $this->error('vm:tick FALLÓ: ' . $e->getMessage());
             Log::error('[vm:tick] FALLÓ', ['now' => $nowStr, 'msg' => $e->getMessage()]);
             return self::FAILURE;
         }
@@ -93,21 +117,21 @@ class VmTickCommand extends Command
                             $estadoService->recalcOwner($s->sessionable);
 
                             Log::info("[vm:tick] Sesión {$actionLabel}", [
-                                'sesion_id'   => $s->id,
-                                'owner'       => class_basename($s->sessionable_type).':'.$s->sessionable_id,
-                                'from'        => $old,
-                                'to'          => $toState,
-                                'fecha'       => (string)$s->fecha,
-                                'hora_inicio' => (string)$s->hora_inicio,
-                                'hora_fin'    => (string)$s->hora_fin,
-                                'now'         => $nowStr,
+                                'sesion_id' => $s->id,
+                                'owner' => class_basename($s->sessionable_type) . ':' . $s->sessionable_id,
+                                'from' => $old,
+                                'to' => $toState,
+                                'fecha' => (string) $s->fecha,
+                                'hora_inicio' => (string) $s->hora_inicio,
+                                'hora_fin' => (string) $s->hora_fin,
+                                'now' => $nowStr,
                             ]);
                         }, 3);
                     } catch (\Throwable $e) {
                         $failed++;
                         Log::error("[vm:tick] Error al {$actionLabel} sesión", [
                             'sesion_id' => $s->id,
-                            'msg'       => $e->getMessage(),
+                            'msg' => $e->getMessage(),
                         ]);
                     }
                 }
