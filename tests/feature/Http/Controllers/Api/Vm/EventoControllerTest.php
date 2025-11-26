@@ -89,6 +89,10 @@ class EventoControllerTest extends TestCase
 
         $response = $this->postJson('/api/vm/eventos', $data);
 
+        if ($response->status() === 422) {
+            dump($response->json());
+        }
+
         $response->assertCreated();
         $this->assertDatabaseHas('vm_eventos', [
             'titulo' => 'Charla de Salud Mental',

@@ -72,80 +72,6 @@ class VmRemainingControllersTest extends TestCase
             'periodo_id' => $this->periodo->id
         ]);
 
-<?php
-
-namespace Tests\Feature\Http\Controllers\Api\Vm;
-
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Models\{User, VmProyecto, VmEvento, EpSede, PeriodoAcademico, EscuelaProfesional, Sede, Facultad, Universidad, VmProceso, VmSesion};
-use Laravel\Sanctum\Sanctum;
-use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\Storage;
-
-class VmRemainingControllersTest extends TestCase
-{
-    use RefreshDatabase;
-
-    protected User $user;
-    protected EpSede $epSede;
-    protected PeriodoAcademico $periodo;
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->user = User::factory()->create();
-        Sanctum::actingAs($this->user);
-
-        $universidad = \App\Models\Universidad::factory()->create();
-        $facultad = \App\Models\Facultad::factory()->create(['universidad_id' => $universidad->id]);
-        $escuela = \App\Models\EscuelaProfesional::factory()->create(['facultad_id' => $facultad->id]);
-        $sede = \App\Models\Sede::factory()->create(['universidad_id' => $universidad->id]);
-
-        $this->epSede = \App\Models\EpSede::factory()->create([
-            'escuela_profesional_id' => $escuela->id,
-            'sede_id' => $sede->id
-        ]);
-
-        // Permisos y Expediente para EpScopeService
-        \Spatie\Permission\Models\Permission::create(['name' => 'ep.manage.ep_sede', 'guard_name' => 'web']);
-        $this->user->givePermissionTo('ep.manage.ep_sede');
-
-        \App\Models\ExpedienteAcademico::factory()->create([
-            'user_id' => $this->user->id,
-            'ep_sede_id' => $this->epSede->id,
-            'rol' => 'COORDINADOR',
-            'estado' => 'ACTIVO'
-        ]);
-
-        $this->periodo = PeriodoAcademico::factory()->create();
-    }
-
-    /** @test */
-    public function test_proyecto_full_returns_details()
-    {
-        $proyecto = VmProyecto::factory()->create([
-            'ep_sede_id' => $this->epSede->id,
-            'periodo_id' => $this->periodo->id
-        ]);
-
-        $response = $this->getJson("/api/vm/proyectos/{$proyecto->id}/full");
-
-        // Si el endpoint existe, debería retornar 200. Si no existe (404), el test fallará.
-        // Asumimos que existe basado en el nombre del controller.
-        $this->assertTrue(in_array($response->status(), [200, 404]));
-    }
-
-    /** @test */
-    public function test_proyecto_imagen_upload()
-    {
-        Storage::fake('public');
-        $proyecto = VmProyecto::factory()->create([
-            'ep_sede_id' => $this->epSede->id,
-            'periodo_id' => $this->periodo->id
-        ]);
-
         $file = UploadedFile::fake()->image('cover.jpg');
 
         $response = $this->postJson("/api/vm/proyectos/{$proyecto->id}/imagenes", [
@@ -188,6 +114,10 @@ class VmRemainingControllersTest extends TestCase
             'hora_inicio' => '10:00',
             'hora_fin' => '12:00'
         ]);
+
+        if (!in_array($response->status(), [200, 201, 422, 403])) {
+            dump($response->status(), $response->content());
+        }
 
         $this->assertTrue(in_array($response->status(), [200, 201, 422, 403]));
     }

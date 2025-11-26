@@ -2,57 +2,82 @@ pipeline {
   agent any
 
   environment {
-    SONARQUBE = 'sonarqube'  // nombre del servidor en Manage Jenkins → System
+    repoUrl          = 'https://github.com/abdul8377/backendTest.git'
+    credentialsId    = 'github-creds'      // <--- cámbialo si tu ID es otro
+    sonarServerName  = 'sonarqube'         // <--- debe coincidir con Manage Jenkins → System
+    scannerToolName  = 'SonarScanner'      // <--- debe coincidir con Global Tool Configuration
+    phpDockerImage   = 'ghcr.io/shivammathur/php:8.3'  // imagen PHP con install-php-extensions
   }
 
   options { timestamps() }
 
   stages {
-    stage('Checkout') {
+    stage('Clone') {
       steps {
-        git branch: 'main',
-            url: 'https://github.com/abdul8377/backendTest.git',
-            credentialsId: 'github-creds'
+        timeout(time: 2, unit: 'MINUTES') {
+          git branch: 'main', credentialsId: "${credentialsId}", url: "${repoUrl}"
+        }
       }
     }
 
-    stage('Prepare PHP & Composer') {
+    stage('Build') {
       steps {
-        sh '''
-          set -e
-          php -v || { echo "❌ PHP no está instalado"; exit 1; }
-          if ! command -v composer >/dev/null 2>&1; then
-            echo "⬇️ Instalando Composer temporalmente..."
-            EXPECTED_SIG="$(wget -q -O - https://composer.github.io/installer.sig)"
-            php -r "copy('https://getcomposer.org/installer','composer-setup.php');"
-            ACTUAL_SIG="$(php -r "echo hash_file('sha384', 'composer-setup.php');")"
-            [ "$EXPECTED_SIG" = "$ACTUAL_SIG" ] || { echo 'Firma inválida'; exit 1; }
-            php composer-setup.php --install-dir=/usr/local/bin --filename=composer
-            rm composer-setup.php
-          fi
-          composer -V
-          composer install --no-interaction --prefer-dist
-        '''
+        timeout(time: 8, unit: 'MINUTES') {
+          script {
+            def img = docker.image("${phpDockerImage}")
+            img.pull()
+            img.inside('-u 0') {
+              sh '''
+                set -e
+                php -v
+
+                # Instalar extensiones mínimas
+                install-php-extensions mbstring pdo_sqlite zip xml ctype tokenizer
+
+                composer --version || true
+                # Si la imagen no trae composer, lo descargamos
+                if ! command -v composer >/dev/null 2>&1; then
+                  EXPECTED_SIG="$(wget -q -O - https://composer.github.io/installer.sig)"
+                  php -r "copy('https://getcomposer.org/installer','composer-setup.php');"
+                  ACTUAL_SIG="$(php -r "echo hash_file('sha384', 'composer-setup.php');")"
+                  [ "$EXPECTED_SIG" = "$ACTUAL_SIG" ] || { echo 'Firma inválida de composer'; exit 1; }
+                  php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+                  rm composer-setup.php
+                fi
+
+                composer install --no-interaction --prefer-dist
+              '''
+            }
+          }
+        }
       }
     }
 
-    stage('Prepare .env & DB') {
+    stage('Test') {
       steps {
-        sh '''
-          cp -f .env.testing .env || true
-          php artisan key:generate || true
-          php artisan config:clear || true
-          php artisan migrate --env=testing --force
-        '''
-      }
-    }
+        timeout(time: 10, unit: 'MINUTES') {
+          script {
+            def img = docker.image("${phpDockerImage}")
+            img.inside('-u 0') {
+              sh '''
+                set -e
+                # Usar SQLite para CI
+                cp -f .env.testing .env || true
+                sed -i 's/^DB_CONNECTION=.*/DB_CONNECTION=sqlite/' .env || true
+                mkdir -p database
+                : > database/database.sqlite
 
-    stage('Run Tests (coverage)') {
-      steps {
-        sh '''
-          mkdir -p storage/coverage storage/test-reports
-          vendor/bin/phpunit --coverage-clover storage/coverage/clover.xml --log-junit storage/test-reports/junit.xml
-        '''
+                php artisan key:generate || true
+                php artisan config:clear || true
+                php artisan migrate --force || true
+
+                mkdir -p storage/coverage storage/test-reports
+                vendor/bin/phpunit --coverage-clover storage/coverage/clover.xml \
+                                   --log-junit storage/test-reports/junit.xml
+              '''
+            }
+          }
+        }
       }
       post {
         always {
@@ -62,34 +87,40 @@ pipeline {
       }
     }
 
-    stage('SonarQube Analysis') {
+    stage('Sonar') {
       steps {
-        withSonarQubeEnv("${SONARQUBE}") {
-          script {
-            def scannerHome = tool name: 'SonarScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
-            sh """
-              "${scannerHome}/bin/sonar-scanner" \
-                -Dsonar.projectKey=laravel-app \
-                -Dsonar.sources=app,routes,config,database \
-                -Dsonar.exclusions=vendor/**,storage/**,bootstrap/**,node_modules/**,public/** \
-                -Dsonar.php.coverage.reportPaths=storage/coverage/clover.xml
-            """
+        timeout(time: 4, unit: 'MINUTES') {
+          withSonarQubeEnv("${sonarServerName}") {
+            script {
+              def scannerHome = tool name: "${scannerToolName}", type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+              sh """
+                "${scannerHome}/bin/sonar-scanner" \
+                  -Dsonar.projectKey=laravel-app \
+                  -Dsonar.sources=app,routes,config,database \
+                  -Dsonar.exclusions=vendor/**,storage/**,bootstrap/**,node_modules/**,public/** \
+                  -Dsonar.php.coverage.reportPaths=storage/coverage/clover.xml
+              """
+            }
           }
         }
       }
     }
 
-    stage('Quality Gate') {
+    stage('Quality gate') {
       steps {
-        timeout(time: 10, unit: 'MINUTES') {
+        sleep(10)
+        timeout(time: 4, unit: 'MINUTES') {
           waitForQualityGate abortPipeline: true
         }
       }
     }
-  }
 
-  post {
-    success { echo '✅ Pipeline completado correctamente.' }
-    failure { echo '❌ Falló el pipeline. Revisa logs en Jenkins.' }
+    stage('Deploy') {
+      steps {
+        timeout(time: 8, unit: 'MINUTES') {
+          echo 'Aquí iría tu paso de despliegue (rsync, docker compose, k8s, etc.), condicionado a Quality Gate OK.'
+        }
+      }
+    }
   }
 }
