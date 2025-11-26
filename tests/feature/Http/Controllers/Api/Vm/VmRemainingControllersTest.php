@@ -109,15 +109,11 @@ class VmRemainingControllersTest extends TestCase
 
         $proceso = VmProceso::factory()->create(['proyecto_id' => $proyecto->id]);
 
-        $response = $this->postJson("/api/vm/procesos/{$proceso->id}/sesiones", [
-            'fecha' => now()->addDay()->toDateString(),
+        $response = $this->postJson("/api/vm/procesos/{$proceso->id}/sesiones/batch", [
+            'fechas' => [now()->addDay()->toDateString()],
             'hora_inicio' => '10:00',
             'hora_fin' => '12:00'
         ]);
-
-        if (!in_array($response->status(), [200, 201, 422, 403])) {
-            dump($response->status(), $response->content());
-        }
 
         $this->assertTrue(in_array($response->status(), [200, 201, 422, 403]));
     }
