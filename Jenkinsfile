@@ -39,7 +39,7 @@ pipeline {
                             -Dsonar.exclusions=vendor/**,storage/**,bootstrap/**,node_modules/**,public/** \
                             -Dsonar.php.coverage.reportPaths=tests/coverage.xml \
                             -Dsonar.host.url=http://docker.sonar:9000 \
-                            -Dsonar.login=${squ_04e1c8241ac31513dc1dd6263b3f4d3cf214214a}
+                            -Dsonar.login=${squ_24386e87c2e203a6f857c81e01e6b9de00cc2796}
                     '''
                 }
             }
