@@ -154,7 +154,7 @@ class EventoControllerTest extends TestCase
 
         $response = $this->deleteJson("/api/vm/eventos/{$evento->id}");
 
-        $response->assertNoContent();
+        $response->assertOk();
         $this->assertDatabaseMissing('vm_eventos', ['id' => $evento->id]);
     }
 

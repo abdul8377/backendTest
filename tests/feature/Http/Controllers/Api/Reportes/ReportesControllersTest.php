@@ -9,7 +9,7 @@ use Laravel\Sanctum\Sanctum;
 
 // Grupo 5: Reportes
 
-class ReporteVmControllerTest extends TestCase
+class ReportesControllersTest extends TestCase
 {
     use RefreshDatabase;
 

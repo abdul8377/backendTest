@@ -9,7 +9,7 @@ use Laravel\Sanctum\Sanctum;
 
 // Grupo 6: Administración
 
-class UniversidadControllerTest extends TestCase
+class AdminControllersTest extends TestCase
 {
     use RefreshDatabase;
 

@@ -9,7 +9,7 @@ use Laravel\Sanctum\Sanctum;
 
 // Grupo 4: Matrícula
 
-class MatriculaControllerTest extends TestCase
+class MatriculaControllersTest extends TestCase
 {
     use RefreshDatabase;
 
