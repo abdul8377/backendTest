@@ -29,25 +29,32 @@ pipeline {
     }
 
     stage('Test (PHPUnit + coverage)') {
-        steps {
-            catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
-                sh '''
-                    set -e
-                    cp -f .env.testing .env
-                    sed -i s/^DB_CONNECTION=.*/DB_CONNECTION=sqlite/ .env
-                    mkdir -p database storage/coverage storage/test-reports
-                    php artisan key:generate
-                    php artisan config:clear
-                    php artisan migrate --force
+      steps {
+        catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
+          sh '''
+            set -e
+            cp -f .env.testing .env || true
+            sed -i s/^DB_CONNECTION=.*/DB_CONNECTION=sqlite/ .env || true
+            mkdir -p database
+            : > database/database.sqlite
 
-                    vendor/bin/phpunit \
-                      --coverage-clover storage/coverage/clover.xml \
-                      --log-junit storage/test-reports/junit.xml
-                '''
-            }
+            php artisan key:generate || true
+            php artisan config:clear || true
+            php artisan migrate --force || true
+
+            mkdir -p storage/coverage storage/test-reports
+            vendor/bin/phpunit --coverage-clover storage/coverage/clover.xml \
+                              --log-junit storage/test-reports/junit.xml
+          '''
         }
+      }
+      post {
+        always {
+          junit 'storage/test-reports/junit.xml'
+          archiveArtifacts artifacts: 'storage/coverage/clover.xml', fingerprint: true
+        }
+      }
     }
-
 
     stage('Sonar') {
       steps {
