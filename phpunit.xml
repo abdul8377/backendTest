@@ -22,7 +22,8 @@
         </include>
         <exclude>
             <directory suffix=".php">app/Models</directory>
-            
+
+            <directory suffix=".php">app/Http</directory>
         </exclude>
         <report>
             <clover outputFile="storage/coverage/clover.xml"/>

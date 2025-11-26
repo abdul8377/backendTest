@@ -1,0 +1,2156 @@
+D:\Backend-appVM\ApiProyecto>docker run --rm -e SONAR_HOST_URL="http://docker.sonar:9000" -e SONAR_LOGIN="squ_04e1c8241ac31513dc1dd6263b3f4d3cf214214a" -v "D:\Backend-appVM\Backend\ApiProyecto:/usr/src" -w "/usr/src" sonarsource/sonar-scanner-cli
+18:38:18.375 INFO  Scanner configuration file: /opt/sonar-scanner/conf/sonar-scanner.properties
+18:38:18.380 INFO  Project root configuration file: NONE
+18:38:18.398 INFO  SonarScanner CLI 7.3.0.5189
+18:38:18.400 INFO  Linux 6.6.87.2-microsoft-standard-WSL2 amd64
+18:38:19.609 INFO  Communicating with SonarQube Server 9.9.8.100196
+18:38:21.490 INFO  Load global settings
+18:38:21.542 INFO  EXECUTION FAILURE
+18:38:21.543 ERROR Error during SonarScanner CLI execution
+18:38:21.543 ERROR Not authorized. Analyzing this project requires authentication. Please provide a user token in sonar.login or other credentials in sonar.login and sonar.password.
+18:38:21.543 ERROR
+18:38:21.543 ERROR Re-run SonarScanner CLI using the -X switch to enable full debug logging.
+18:38:21.543 INFO  Total time: 3.174s
+
+D:\Backend-appVM\ApiProyecto>vendor/bin/phpunit --testsuite Unit
+"vendor" no se reconoce como un comando interno o externo,
+programa o archivo por lotes ejecutable.
+
+D:\Backend-appVM\ApiProyecto>php vendor/bin/phpunit --testsuite Unit
+PHPUnit 10.0.0 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.3.26 with Xdebug 3.5.0alpha3
+Configuration: D:\Backend-appVM\ApiProyecto\phpunit.xml
+
+.......................................................           55 / 55 (100%)
+
+Time: 00:47.898, Memory: 58.00 MB
+
+OK (55 tests, 107 assertions)
+
+Generating code coverage report in Clover XML format ... done [00:19.848]
+
+D:\Backend-appVM\ApiProyecto>vendor/bin/phpunit --testsuite Feature
+"vendor" no se reconoce como un comando interno o externo,
+programa o archivo por lotes ejecutable.
+
+D:\Backend-appVM\ApiProyecto>php vendor/bin/phpunit --testsuite Feature
+PHPUnit 10.0.0 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.3.26 with Xdebug 3.5.0alpha3
+Configuration: D:\Backend-appVM\ApiProyecto\phpunit.xml
+
+."select * from "vm_sesiones" where "estado" = ? and datetime(date(fecha) || ' ' || hora_inicio) <= ? and datetime(date(fecha) || ' ' || hora_fin) >  ?" // app\Console\Commands\VmTickCommand.php:46
+"2025-03-10 10:00:00" // app\Console\Commands\VmTickCommand.php:46
+.......F..FF..FF.FFFFF.......................FF.FFFFFF.F...F..  63 / 166 ( 37%)
+....EF.EFFEF.F..FFFEEEEEEEE........EEEE........................ 126 / 166 ( 75%)
+........................................                        166 / 166 (100%)
+
+Time: 09:58.760, Memory: 164.00 MB
+
+There were 15 errors:
+
+1) Tests\Feature\Http\Controllers\Api\Lookup\LookupControllerTest::test_ep_sedes_returns_list
+Illuminate\Database\UniqueConstraintViolationException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: ep_sede.escuela_profesional_id, ep_sede.sede_id (Connection: sqlite, SQL: insert into "ep_sede" ("escuela_profesional_id", "sede_id", "vigente_desde", "vigente_hasta", "updated_at", "created_at") values (1, 1, 2007-01-22 00:00:00, ?, 2025-11-26 19:01:36, 2025-11-26 19:01:36))
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:570
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:811
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:778
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:559
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:523
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3853
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2235
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1436
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1401
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1240
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:370
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:271
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:365
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:325
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:315
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Lookup\LookupControllerTest.php:31
+
+Caused by
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: ep_sede.escuela_profesional_id, ep_sede.sede_id
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:570
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:811
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:778
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:559
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:523
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3853
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2235
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1436
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1401
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1240
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:370
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:271
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:365
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:325
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:315
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Lookup\LookupControllerTest.php:31
+
+2) Tests\Feature\Http\Controllers\Api\Lookup\LookupControllerTest::test_lookups_require_authentication
+Error: Call to a member function withAccessToken() on null
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\sanctum\src\Sanctum.php:82
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Lookup\LookupControllerTest.php:77
+
+3) Tests\Feature\Http\Controllers\Api\Matricula\MatriculaControllersTest::test_show_returns_matricula_details
+Error: Class "Database\Factories\MatriculaFactory" not found
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:950
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\HasFactory.php:21
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Matricula\MatriculaControllersTest.php:79
+
+4) Tests\Feature\Http\Controllers\Api\User\UserControllerTest::test_endpoints_require_authentication
+Error: Call to a member function withAccessToken() on null
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\sanctum\src\Sanctum.php:82
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\User\UserControllerTest.php:113
+
+5) Tests\Feature\Http\Controllers\Api\Vm\EventoControllerTest::test_index_returns_eventos
+Illuminate\Database\QueryException: SQLSTATE[23000]: Integrity constraint violation: 19 CHECK constraint failed: estado (Connection: sqlite, SQL: insert into "periodos_academicos" ("codigo", "anio", "ciclo", "estado", "es_actual", "fecha_inicio", "fecha_fin", "updated_at", "created_at") values (2023-2, 2023, 2, ACTIVO, 0, 2025-10-26 19:01:49, 2025-12-26 19:01:49, 2025-11-26 19:01:49, 2025-11-26 19:01:49))
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:570
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:811
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:778
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:559
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:523
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3853
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2235
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1436
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1401
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1240
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:370
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:271
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:365
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:321
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:315
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Vm\EventoControllerTest.php:49
+
+Caused by
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 CHECK constraint failed: estado
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:570
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:811
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:778
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:559
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:523
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3853
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2235
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1436
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1401
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1240
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:370
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:271
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:365
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:321
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:315
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Vm\EventoControllerTest.php:49
+
+6) Tests\Feature\Http\Controllers\Api\Vm\EventoControllerTest::test_store_creates_evento
+Illuminate\Database\QueryException: SQLSTATE[23000]: Integrity constraint violation: 19 CHECK constraint failed: estado (Connection: sqlite, SQL: insert into "periodos_academicos" ("codigo", "anio", "ciclo", "estado", "es_actual", "fecha_inicio", "fecha_fin", "updated_at", "created_at") values (2024-1, 2024, 1, ACTIVO, 0, 2025-10-26 19:01:50, 2025-12-26 19:01:50, 2025-11-26 19:01:50, 2025-11-26 19:01:50))
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:570
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:811
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:778
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:559
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:523
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3853
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2235
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1436
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1401
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1240
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:370
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:271
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:365
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:321
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:315
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Vm\EventoControllerTest.php:49
+
+Caused by
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 CHECK constraint failed: estado
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:570
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:811
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:778
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:559
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:523
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3853
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2235
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1436
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1401
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1240
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:370
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:271
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:365
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:321
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:315
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Vm\EventoControllerTest.php:49
+
+7) Tests\Feature\Http\Controllers\Api\Vm\EventoControllerTest::test_store_validates_required_fields
+Illuminate\Database\QueryException: SQLSTATE[23000]: Integrity constraint violation: 19 CHECK constraint failed: estado (Connection: sqlite, SQL: insert into "periodos_academicos" ("codigo", "anio", "ciclo", "estado", "es_actual", "fecha_inicio", "fecha_fin", "updated_at", "created_at") values (2024-2, 2024, 2, ACTIVO, 0, 2025-10-26 19:01:51, 2025-12-26 19:01:51, 2025-11-26 19:01:51, 2025-11-26 19:01:51))
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:570
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:811
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:778
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:559
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:523
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3853
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2235
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1436
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1401
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1240
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:370
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:271
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:365
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:321
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:315
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Vm\EventoControllerTest.php:49
+
+Caused by
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 CHECK constraint failed: estado
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:570
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:811
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:778
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:559
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:523
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3853
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2235
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1436
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1401
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1240
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:370
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:271
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:365
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:321
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:315
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Vm\EventoControllerTest.php:49
+
+8) Tests\Feature\Http\Controllers\Api\Vm\EventoControllerTest::test_store_requires_at_least_one_sesion
+Illuminate\Database\QueryException: SQLSTATE[23000]: Integrity constraint violation: 19 CHECK constraint failed: estado (Connection: sqlite, SQL: insert into "periodos_academicos" ("codigo", "anio", "ciclo", "estado", "es_actual", "fecha_inicio", "fecha_fin", "updated_at", "created_at") values (2025-1, 2025, 1, ACTIVO, 0, 2025-10-26 19:01:52, 2025-12-26 19:01:52, 2025-11-26 19:01:52, 2025-11-26 19:01:52))
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:570
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:811
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:778
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:559
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:523
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3853
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2235
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1436
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1401
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1240
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:370
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:271
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:365
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:321
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:315
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Vm\EventoControllerTest.php:49
+
+Caused by
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 CHECK constraint failed: estado
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:570
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:811
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:778
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:559
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:523
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3853
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2235
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1436
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1401
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1240
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:370
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:271
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:365
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:321
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:315
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Vm\EventoControllerTest.php:49
+
+9) Tests\Feature\Http\Controllers\Api\Vm\EventoControllerTest::test_show_returns_evento_details
+Illuminate\Database\QueryException: SQLSTATE[23000]: Integrity constraint violation: 19 CHECK constraint failed: estado (Connection: sqlite, SQL: insert into "periodos_academicos" ("codigo", "anio", "ciclo", "estado", "es_actual", "fecha_inicio", "fecha_fin", "updated_at", "created_at") values (2025-2, 2025, 2, ACTIVO, 0, 2025-10-26 19:01:54, 2025-12-26 19:01:54, 2025-11-26 19:01:54, 2025-11-26 19:01:54))
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:570
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:811
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:778
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:559
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:523
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3853
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2235
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1436
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1401
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1240
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:370
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:271
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:365
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:321
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:315
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Vm\EventoControllerTest.php:49
+
+Caused by
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 CHECK constraint failed: estado
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:570
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:811
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:778
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:559
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:523
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3853
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2235
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1436
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1401
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1240
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:370
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:271
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:365
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:321
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:315
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Vm\EventoControllerTest.php:49
+
+10) Tests\Feature\Http\Controllers\Api\Vm\EventoControllerTest::test_destroy_deletes_evento
+Illuminate\Database\QueryException: SQLSTATE[23000]: Integrity constraint violation: 19 CHECK constraint failed: estado (Connection: sqlite, SQL: insert into "periodos_academicos" ("codigo", "anio", "ciclo", "estado", "es_actual", "fecha_inicio", "fecha_fin", "updated_at", "created_at") values (2026-1, 2026, 1, ACTIVO, 0, 2025-10-26 19:01:55, 2025-12-26 19:01:55, 2025-11-26 19:01:55, 2025-11-26 19:01:55))
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:570
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:811
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:778
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:559
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:523
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3853
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2235
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1436
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1401
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1240
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:370
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:271
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:365
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:321
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:315
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Vm\EventoControllerTest.php:49
+
+Caused by
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 CHECK constraint failed: estado
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:570
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:811
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:778
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:559
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:523
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3853
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2235
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1436
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1401
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1240
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:370
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:271
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:365
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:321
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:315
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Vm\EventoControllerTest.php:49
+
+11) Tests\Feature\Http\Controllers\Api\Vm\EventoControllerTest::test_endpoints_require_permissions
+Illuminate\Database\QueryException: SQLSTATE[23000]: Integrity constraint violation: 19 CHECK constraint failed: estado (Connection: sqlite, SQL: insert into "periodos_academicos" ("codigo", "anio", "ciclo", "estado", "es_actual", "fecha_inicio", "fecha_fin", "updated_at", "created_at") values (2026-2, 2026, 2, ACTIVO, 0, 2025-10-26 19:01:56, 2025-12-26 19:01:56, 2025-11-26 19:01:56, 2025-11-26 19:01:56))
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:570
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:811
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:778
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:559
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:523
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3853
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2235
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1436
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1401
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1240
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:370
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:271
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:365
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:321
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:315
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Vm\EventoControllerTest.php:49
+
+Caused by
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 CHECK constraint failed: estado
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:570
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:811
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:778
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:559
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:523
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3853
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2235
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1436
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1401
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1240
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:370
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:271
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:365
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:321
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:315
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Vm\EventoControllerTest.php:49
+
+12) Tests\Feature\Http\Controllers\Api\Vm\VmControllersTest::test_inscripcion_proyecto_enrolls_student
+Illuminate\Database\QueryException: SQLSTATE[23000]: Integrity constraint violation: 19 CHECK constraint failed: estado (Connection: sqlite, SQL: insert into "periodos_academicos" ("codigo", "anio", "ciclo", "estado", "es_actual", "fecha_inicio", "fecha_fin", "updated_at", "created_at") values (2031-1, 2031, 1, ACTIVO, 0, 2025-10-26 19:02:13, 2025-12-26 19:02:13, 2025-11-26 19:02:13, 2025-11-26 19:02:13))
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:570
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:811
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:778
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:559
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:523
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3853
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2235
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1436
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1401
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1240
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:370
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:271
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:365
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:321
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:315
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Vm\VmControllersTest.php:36
+
+Caused by
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 CHECK constraint failed: estado
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:570
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:811
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:778
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:559
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:523
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3853
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2235
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1436
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1401
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1240
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:370
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:271
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:365
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:321
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:315
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Vm\VmControllersTest.php:36
+
+13) Tests\Feature\Http\Controllers\Api\Vm\VmControllersTest::test_inscripcion_evento_enrolls_student
+Illuminate\Database\QueryException: SQLSTATE[23000]: Integrity constraint violation: 19 CHECK constraint failed: estado (Connection: sqlite, SQL: insert into "periodos_academicos" ("codigo", "anio", "ciclo", "estado", "es_actual", "fecha_inicio", "fecha_fin", "updated_at", "created_at") values (2031-2, 2031, 2, ACTIVO, 0, 2025-10-26 19:02:14, 2025-12-26 19:02:14, 2025-11-26 19:02:14, 2025-11-26 19:02:14))
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:570
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:811
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:778
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:559
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:523
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3853
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2235
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1436
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1401
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1240
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:370
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:271
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:365
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:321
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:315
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Vm\VmControllersTest.php:36
+
+Caused by
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 CHECK constraint failed: estado
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:570
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:811
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:778
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:559
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:523
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3853
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2235
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1436
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1401
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1240
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:370
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:271
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:365
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:321
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:315
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Vm\VmControllersTest.php:36
+
+14) Tests\Feature\Http\Controllers\Api\Vm\VmControllersTest::test_agenda_alumno_returns_schedule
+Illuminate\Database\QueryException: SQLSTATE[23000]: Integrity constraint violation: 19 CHECK constraint failed: estado (Connection: sqlite, SQL: insert into "periodos_academicos" ("codigo", "anio", "ciclo", "estado", "es_actual", "fecha_inicio", "fecha_fin", "updated_at", "created_at") values (2032-1, 2032, 1, ACTIVO, 0, 2025-10-26 19:02:15, 2025-12-26 19:02:15, 2025-11-26 19:02:15, 2025-11-26 19:02:15))
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:570
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:811
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:778
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:559
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:523
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3853
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2235
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1436
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1401
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1240
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:370
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:271
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:365
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:321
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:315
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Vm\VmControllersTest.php:36
+
+Caused by
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 CHECK constraint failed: estado
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:570
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:811
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:778
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:559
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:523
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3853
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2235
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1436
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1401
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1240
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:370
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:271
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:365
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:321
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:315
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Vm\VmControllersTest.php:36
+
+15) Tests\Feature\Http\Controllers\Api\Vm\VmControllersTest::test_categorias_evento_index_returns_list
+Illuminate\Database\QueryException: SQLSTATE[23000]: Integrity constraint violation: 19 CHECK constraint failed: estado (Connection: sqlite, SQL: insert into "periodos_academicos" ("codigo", "anio", "ciclo", "estado", "es_actual", "fecha_inicio", "fecha_fin", "updated_at", "created_at") values (2032-2, 2032, 2, ACTIVO, 0, 2025-10-26 19:02:16, 2025-12-26 19:02:16, 2025-11-26 19:02:16, 2025-11-26 19:02:16))
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:570
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:811
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:778
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:559
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:523
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3853
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2235
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1436
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1401
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1240
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:370
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:271
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:365
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:321
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:315
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Vm\VmControllersTest.php:36
+
+Caused by
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 CHECK constraint failed: estado
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:570
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:811
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:778
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:559
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:523
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3853
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2235
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1436
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1401
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1240
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:370
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:271
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:365
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:321
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:315
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Vm\VmControllersTest.php:36
+
+--
+
+There were 28 failures:
+
+1) Tests\Feature\Http\Controllers\Api\Academico\EscuelaProfesionalApiControllerTest::test_show_returns_escuela_with_relations
+Unable to find JSON:
+
+[{
+    "data": {
+        "id": 1,
+        "codigo": "EP504",
+        "nombre": "Foreign Language Teacher",
+        "facultad_id": 1
+    }
+}]
+
+within response JSON:
+
+[{
+    "data": {
+        "id": null,
+        "codigo": null,
+        "nombre": null,
+        "facultad_id": null,
+        "facultad": null,
+        "sedes": [],
+        "meta": {
+            "created_at": null,
+            "updated_at": null
+        }
+    }
+}].
+
+
+Failed asserting that an array has the subset Array &0 [
+    'data' => Array &1 [
+        'id' => 1,
+        'codigo' => 'EP504',
+        'nombre' => 'Foreign Language Teacher',
+        'facultad_id' => 1,
+    ],
+].
+--- Expected
++++ Actual
+@@ @@
+ array (
+   'data' =>
+   array (
+-    'id' => 1,
+-    'codigo' => 'EP504',
+-    'nombre' => 'Foreign Language Teacher',
+-    'facultad_id' => 1,
++    'id' => NULL,
++    'codigo' => NULL,
++    'nombre' => NULL,
++    'facultad_id' => NULL,
+     'facultad' => NULL,
+     'sedes' =>
+     array (
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\Constraints\ArraySubset.php:80
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\Assert.php:36
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\AssertableJsonString.php:319
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:833
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Academico\EscuelaProfesionalApiControllerTest.php:87
+
+2) Tests\Feature\Http\Controllers\Api\Academico\EscuelaProfesionalApiControllerTest::test_update_modifies_existing_escuela
+Expected response status code [200] but received 422.
+Failed asserting that 422 is identical to 200.
+
+The following errors occurred during the last request:
+
+{
+    "message": "The codigo has already been taken.",
+    "errors": {
+        "codigo": [
+            "The codigo has already been taken."
+        ]
+    }
+}
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:174
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:16
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Academico\EscuelaProfesionalApiControllerTest.php:149
+
+3) Tests\Feature\Http\Controllers\Api\Academico\EscuelaProfesionalApiControllerTest::test_destroy_deletes_escuela
+Failed asserting that a row in the table [escuelas_profesionales] does not match the attributes {
+    "id": 1
+}.
+
+Found similar results: [
+    {
+        "id": 1
+    }
+].
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\InteractsWithDatabase.php:79
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Academico\EscuelaProfesionalApiControllerTest.php:172
+
+4) Tests\Feature\Http\Controllers\Api\Academico\EscuelaProfesionalApiControllerTest::test_update_sede_vigencia_modifies_dates
+Expected response status code [204] but received 404.
+Failed asserting that 404 is identical to 204.
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:174
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:47
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Academico\EscuelaProfesionalApiControllerTest.php:246
+
+5) Tests\Feature\Http\Controllers\Api\Academico\EscuelaProfesionalApiControllerTest::test_detach_sede_removes_relationship
+Expected response status code [204] but received 404.
+Failed asserting that 404 is identical to 204.
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:174
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:47
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Academico\EscuelaProfesionalApiControllerTest.php:270
+
+6) Tests\Feature\Http\Controllers\Api\Academico\ExpedienteControllerTest::test_store_creates_new_expediente
+Expected response status code [201] but received 404.
+Failed asserting that 404 is identical to 201.
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:174
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:26
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Academico\ExpedienteControllerTest.php:56
+
+7) Tests\Feature\Http\Controllers\Api\Academico\ExpedienteControllerTest::test_store_updates_existing_expediente_if_duplicate
+Expected response status code [200] but received 404.
+Failed asserting that 404 is identical to 200.
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:174
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:16
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Academico\ExpedienteControllerTest.php:100
+
+8) Tests\Feature\Http\Controllers\Api\Academico\ExpedienteControllerTest::test_store_validates_required_fields
+Expected response status code [422] but received 404.
+Failed asserting that 404 is identical to 422.
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:174
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:221
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Academico\ExpedienteControllerTest.php:122
+
+9) Tests\Feature\Http\Controllers\Api\Academico\ExpedienteControllerTest::test_store_requires_permission
+Expected response status code [403] but received 404.
+Failed asserting that 404 is identical to 403.
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:174
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:141
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Academico\ExpedienteControllerTest.php:140
+
+10) Tests\Feature\Http\Controllers\Api\Academico\ExpedienteControllerTest::test_store_sets_default_values
+Expected response status code [201] but received 404.
+Failed asserting that 404 is identical to 201.
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:174
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:26
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Academico\ExpedienteControllerTest.php:160
+
+11) Tests\Feature\Http\Controllers\Api\Admin\AdminControllersTest::test_index_returns_universidades
+Expected response status code [200] but received 404.
+Failed asserting that 404 is identical to 200.
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:174
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:16
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Admin\AdminControllersTest.php:28
+
+12) Tests\Feature\Http\Controllers\Api\Admin\AdminControllersTest::test_store_creates_universidad
+Expected response status code [201] but received 404.
+Failed asserting that 404 is identical to 201.
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:174
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:26
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Admin\AdminControllersTest.php:48
+
+13) Tests\Feature\Http\Controllers\Api\EpSede\EpSedeStaffControllerTest::test_current_returns_current_staff
+Failed asserting that an array has the key 'coordinador'.
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\AssertableJsonString.php:303
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:978
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\EpSede\EpSedeStaffControllerTest.php:69
+
+14) Tests\Feature\Http\Controllers\Api\EpSede\EpSedeStaffControllerTest::test_history_returns_staff_changes
+Failed asserting that an array has the key 'data'.
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\AssertableJsonString.php:299
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:978
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\EpSede\EpSedeStaffControllerTest.php:81
+
+15) Tests\Feature\Http\Controllers\Api\EpSede\EpSedeStaffControllerTest::test_assign_assigns_coordinador_to_ep_sede
+Expected response status code [200] but received 403.
+Failed asserting that 403 is identical to 200.
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:174
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:16
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\EpSede\EpSedeStaffControllerTest.php:108
+
+16) Tests\Feature\Http\Controllers\Api\EpSede\EpSedeStaffControllerTest::test_assign_assigns_encargado_to_ep_sede
+Expected response status code [200] but received 403.
+Failed asserting that 403 is identical to 200.
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:174
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:16
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\EpSede\EpSedeStaffControllerTest.php:134
+
+17) Tests\Feature\Http\Controllers\Api\EpSede\EpSedeStaffControllerTest::test_unassign_removes_staff_role
+Expected response status code [200] but received 403.
+Failed asserting that 403 is identical to 200.
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:174
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:16
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\EpSede\EpSedeStaffControllerTest.php:160
+
+18) Tests\Feature\Http\Controllers\Api\EpSede\EpSedeStaffControllerTest::test_delegate_creates_interim_encargado
+Expected response status code [200] but received 403.
+Failed asserting that 403 is identical to 200.
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:174
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:16
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\EpSede\EpSedeStaffControllerTest.php:185
+
+19) Tests\Feature\Http\Controllers\Api\EpSede\EpSedeStaffControllerTest::test_create_and_assign_creates_user_and_assigns_role
+Expected response status code [201] but received 500.
+Failed asserting that 500 is identical to 201.
+
+The following exception occurred during the last request:
+
+Illuminate\Validation\ValidationException: The doc numero field is required. in D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Support\helpers.php:420
+Stack trace:
+#0 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Validation\Validator.php(558): throw_if(true, 'Illuminate\\Vali...', Object(Illuminate\Validation\Validator))
+#1 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Foundation\Providers\FoundationServiceProvider.php(156): Illuminate\Validation\Validator->validate()
+#2 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Macroable\Traits\Macroable.php(126): Illuminate\Http\Request->Illuminate\Foundation\Providers\{closure}(Array)
+#3 D:\Backend-appVM\ApiProyecto\app\Http\Controllers\Api\EpSede\EpSedeStaffController.php(449): Illuminate\Http\Request->__call('validate', Array)
+#4 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php(46): App\Http\Controllers\Api\EpSede\EpSedeStaffController->createAndAssign(Object(Illuminate\Http\Request), 1, Object(App\Services\EpSede\StaffAssignmentService))
+#5 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\Route.php(265): Illuminate\Routing\ControllerDispatcher->dispatch(Object(Illuminate\Routing\Route), Object(App\Http\Controllers\Api\EpSede\EpSedeStaffController), 'createAndAssign')
+#6 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\Route.php(211): Illuminate\Routing\Route->runController()
+#7 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\Router.php(822): Illuminate\Routing\Route->run()
+#8 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(180): Illuminate\Routing\Router->Illuminate\Routing\{closure}(Object(Illuminate\Http\Request))
+#9 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\Middleware\SubstituteBindings.php(50): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#10 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Routing\Middleware\SubstituteBindings->handle(Object(Illuminate\Http\Request), Object(Closure))
+#11 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Auth\Middleware\Authenticate.php(63): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#12 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Auth\Middleware\Authenticate->handle(Object(Illuminate\Http\Request), Object(Closure), 'sanctum')
+#13 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(137): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#14 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\Router.php(821): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#15 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\Router.php(800): Illuminate\Routing\Router->runRouteWithinStack(Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request))
+#16 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\Router.php(764): Illuminate\Routing\Router->runRoute(Object(Illuminate\Http\Request), Object(Illuminate\Routing\Route))
+#17 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\Router.php(753): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#18 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(200): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#19 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(180): Illuminate\Foundation\Http\Kernel->Illuminate\Foundation\Http\{closure}(Object(Illuminate\Http\Request))
+#20 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Http\Middleware\HandleCors.php(61): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#21 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Http\Middleware\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#22 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(137): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#23 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(175): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#24 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(144): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#25 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\MakesHttpRequests.php(607): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#26 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\MakesHttpRequests.php(573): Illuminate\Foundation\Testing\TestCase->call('POST', '/api/ep-sedes/1...', Array, Array, Array, Array, '{"username":"nu...')
+#27 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\MakesHttpRequests.php(411): Illuminate\Foundation\Testing\TestCase->json('POST', '/api/ep-sedes/1...', Array, Array, 0)
+#28 D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\EpSede\EpSedeStaffControllerTest.php(234): Illuminate\Foundation\Testing\TestCase->postJson('/api/ep-sedes/1...', Array)
+#29 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\Framework\TestCase.php(1016): Tests\Feature\Http\Controllers\Api\EpSede\EpSedeStaffControllerTest->test_create_and_assign_creates_user_and_assigns_role()
+#30 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\Framework\TestCase.php(619): PHPUnit\Framework\TestCase->runTest()
+#31 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\Framework\TestRunner.php(101): PHPUnit\Framework\TestCase->runBare()
+#32 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\Framework\TestCase.php(448): PHPUnit\Framework\TestRunner->run(Object(Tests\Feature\Http\Controllers\Api\EpSede\EpSedeStaffControllerTest))
+#33 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\Framework\TestSuite.php(407): PHPUnit\Framework\TestCase->run()
+#34 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\Framework\TestSuite.php(407): PHPUnit\Framework\TestSuite->run()
+#35 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\Framework\TestSuite.php(407): PHPUnit\Framework\TestSuite->run()
+#36 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\TextUI\TestRunner.php(63): PHPUnit\Framework\TestSuite->run()
+#37 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\TextUI\Application.php(135): PHPUnit\TextUI\TestRunner->run(Object(PHPUnit\TextUI\Configuration\Configuration), Object(PHPUnit\Runner\ResultCache\DefaultResultCache), Object(PHPUnit\Framework\TestSuite))
+#38 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\phpunit(90): PHPUnit\TextUI\Application->run(Array)
+#39 D:\Backend-appVM\ApiProyecto\vendor\bin\phpunit(122): include('D:\\Backend-appV...')
+#40 {main}
+
+----------------------------------------------------------------------------------
+
+The doc numero field is required.
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:174
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:26
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\EpSede\EpSedeStaffControllerTest.php:236
+
+20) Tests\Feature\Http\Controllers\Api\Login\AuthControllerTest::test_lookup_includes_active_expediente
+Failed asserting that an array has the key 'id'.
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\AssertableJsonString.php:303
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\AssertableJsonString.php:278
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\AssertableJsonString.php:301
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:978
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Login\AuthControllerTest.php:65
+
+21) Tests\Feature\Http\Controllers\Api\Lookup\LookupControllerTest::test_periodos_returns_academic_periods
+Failed asserting that an array has the key 'data'.
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\AssertableJsonString.php:299
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:978
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Lookup\LookupControllerTest.php:50
+
+22) Tests\Feature\Http\Controllers\Api\Matricula\MatriculaControllersTest::test_index_returns_matriculas
+Expected response status code [200] but received 404.
+Failed asserting that 404 is identical to 200.
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:174
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:16
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Matricula\MatriculaControllersTest.php:26
+
+23) Tests\Feature\Http\Controllers\Api\Matricula\MatriculaControllersTest::test_store_creates_matricula
+Expected response status code [201] but received 404.
+Failed asserting that 404 is identical to 201.
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:174
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:26
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Matricula\MatriculaControllersTest.php:61
+
+24) Tests\Feature\Http\Controllers\Api\Reportes\ReportesControllersTest::test_reporte_vm_endpoints_accessible
+Expected response status code [200] but received 404.
+Failed asserting that 404 is identical to 200.
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:174
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:16
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Reportes\ReportesControllersTest.php:26
+
+25) Tests\Feature\Http\Controllers\Api\User\UserControllerTest::test_me_returns_current_user_profile
+Unable to find JSON:
+
+[{
+    "id": 1,
+    "username": "jazmin.lueilwitz",
+    "email": "adooley@example.com"
+}]
+
+within response JSON:
+
+[{
+    "ok": true,
+    "user": {
+        "id": 1,
+        "username": "jazmin.lueilwitz",
+        "first_name": "Shanny",
+        "last_name": "Gibson",
+        "full_name": "Shanny Gibson",
+        "email": "adooley@example.com",
+        "status": "active",
+        "doc_tipo": null,
+        "doc_numero": null,
+        "celular": null,
+        "pais": null,
+        "religion": null,
+        "fecha_nacimiento": null,
+        "profile_photo": null,
+        "profile_photo_url": null,
+        "roles": [],
+        "rol_principal": null,
+        "permissions": [],
+        "permissions_map": [],
+        "expediente_activo": null,
+        "expedientes": []
+    }
+}].
+
+
+Failed asserting that an array has the subset Array &0 [
+    'id' => 1,
+    'username' => 'jazmin.lueilwitz',
+    'email' => 'adooley@example.com',
+].
+--- Expected
++++ Actual
+@@ @@
+     array (
+     ),
+   ),
+-  'id' => 1,
+-  'username' => 'jazmin.lueilwitz',
+-  'email' => 'adooley@example.com',
+ )
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\Constraints\ArraySubset.php:80
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\Assert.php:36
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\AssertableJsonString.php:319
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:833
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\User\UserControllerTest.php:30
+
+26) Tests\Feature\Http\Controllers\Api\User\UserControllerTest::test_show_by_username_finds_user
+Expected response status code [200] but received 403.
+Failed asserting that 403 is identical to 200.
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:174
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:16
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\User\UserControllerTest.php:81
+
+27) Tests\Feature\Http\Controllers\Api\User\UserControllerTest::test_sessions_returns_user_sessions
+Expected response status code [200] but received 500.
+Failed asserting that 500 is identical to 200.
+
+The following exception occurred during the last request:
+
+RuntimeException: Session store not set on request. in D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Http\Request.php:608
+Stack trace:
+#0 D:\Backend-appVM\ApiProyecto\app\Http\Controllers\Api\User\UserController.php(191): Illuminate\Http\Request->session()
+#1 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php(46): App\Http\Controllers\Api\User\UserController->sessions(Object(Illuminate\Http\Request))
+#2 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\Route.php(265): Illuminate\Routing\ControllerDispatcher->dispatch(Object(Illuminate\Routing\Route), Object(App\Http\Controllers\Api\User\UserController), 'sessions')
+#3 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\Route.php(211): Illuminate\Routing\Route->runController()
+#4 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\Router.php(822): Illuminate\Routing\Route->run()
+#5 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(180): Illuminate\Routing\Router->Illuminate\Routing\{closure}(Object(Illuminate\Http\Request))
+#6 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\Middleware\SubstituteBindings.php(50): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#7 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Routing\Middleware\SubstituteBindings->handle(Object(Illuminate\Http\Request), Object(Closure))
+#8 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Auth\Middleware\Authenticate.php(63): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#9 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Auth\Middleware\Authenticate->handle(Object(Illuminate\Http\Request), Object(Closure), 'sanctum')
+#10 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(137): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#11 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\Router.php(821): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#12 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\Router.php(800): Illuminate\Routing\Router->runRouteWithinStack(Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request))
+#13 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\Router.php(764): Illuminate\Routing\Router->runRoute(Object(Illuminate\Http\Request), Object(Illuminate\Routing\Route))
+#14 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\Router.php(753): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#15 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(200): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#16 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(180): Illuminate\Foundation\Http\Kernel->Illuminate\Foundation\Http\{closure}(Object(Illuminate\Http\Request))
+#17 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Http\Middleware\HandleCors.php(61): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#18 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Http\Middleware\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#19 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(137): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#20 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(175): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#21 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(144): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#22 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\MakesHttpRequests.php(607): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#23 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\MakesHttpRequests.php(573): Illuminate\Foundation\Testing\TestCase->call('GET', '/api/users/me/s...', Array, Array, Array, Array, '[]')
+#24 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\MakesHttpRequests.php(381): Illuminate\Foundation\Testing\TestCase->json('GET', '/api/users/me/s...', Array, Array, 0)
+#25 D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\User\UserControllerTest.php(92): Illuminate\Foundation\Testing\TestCase->getJson('/api/users/me/s...')
+#26 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\Framework\TestCase.php(1016): Tests\Feature\Http\Controllers\Api\User\UserControllerTest->test_sessions_returns_user_sessions()
+#27 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\Framework\TestCase.php(619): PHPUnit\Framework\TestCase->runTest()
+#28 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\Framework\TestRunner.php(101): PHPUnit\Framework\TestCase->runBare()
+#29 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\Framework\TestCase.php(448): PHPUnit\Framework\TestRunner->run(Object(Tests\Feature\Http\Controllers\Api\User\UserControllerTest))
+#30 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\Framework\TestSuite.php(407): PHPUnit\Framework\TestCase->run()
+#31 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\Framework\TestSuite.php(407): PHPUnit\Framework\TestSuite->run()
+#32 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\Framework\TestSuite.php(407): PHPUnit\Framework\TestSuite->run()
+#33 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\TextUI\TestRunner.php(63): PHPUnit\Framework\TestSuite->run()
+#34 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\TextUI\Application.php(135): PHPUnit\TextUI\TestRunner->run(Object(PHPUnit\TextUI\Configuration\Configuration), Object(PHPUnit\Runner\ResultCache\DefaultResultCache), Object(PHPUnit\Framework\TestSuite))
+#35 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\phpunit(90): PHPUnit\TextUI\Application->run(Array)
+#36 D:\Backend-appVM\ApiProyecto\vendor\bin\phpunit(122): include('D:\\Backend-appV...')
+#37 {main}
+
+----------------------------------------------------------------------------------
+
+Session store not set on request.
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:174
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:16
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\User\UserControllerTest.php:94
+
+28) Tests\Feature\Http\Controllers\Api\User\UserControllerTest::test_destroy_session_revokes_token
+Expected response status code [200] but received 500.
+Failed asserting that 500 is identical to 200.
+
+The following exception occurred during the last request:
+
+RuntimeException: Session store not set on request. in D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Http\Request.php:608
+Stack trace:
+#0 D:\Backend-appVM\ApiProyecto\app\Http\Controllers\Api\User\UserController.php(230): Illuminate\Http\Request->session()
+#1 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php(46): App\Http\Controllers\Api\User\UserController->destroySession(Object(Illuminate\Http\Request), '1')
+#2 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\Route.php(265): Illuminate\Routing\ControllerDispatcher->dispatch(Object(Illuminate\Routing\Route), Object(App\Http\Controllers\Api\User\UserController), 'destroySession')
+#3 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\Route.php(211): Illuminate\Routing\Route->runController()
+#4 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\Router.php(822): Illuminate\Routing\Route->run()
+#5 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(180): Illuminate\Routing\Router->Illuminate\Routing\{closure}(Object(Illuminate\Http\Request))
+#6 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\Middleware\SubstituteBindings.php(50): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#7 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Routing\Middleware\SubstituteBindings->handle(Object(Illuminate\Http\Request), Object(Closure))
+#8 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Auth\Middleware\Authenticate.php(63): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#9 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Auth\Middleware\Authenticate->handle(Object(Illuminate\Http\Request), Object(Closure), 'sanctum')
+#10 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(137): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#11 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\Router.php(821): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#12 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\Router.php(800): Illuminate\Routing\Router->runRouteWithinStack(Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request))
+#13 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\Router.php(764): Illuminate\Routing\Router->runRoute(Object(Illuminate\Http\Request), Object(Illuminate\Routing\Route))
+#14 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\Router.php(753): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#15 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(200): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#16 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(180): Illuminate\Foundation\Http\Kernel->Illuminate\Foundation\Http\{closure}(Object(Illuminate\Http\Request))
+#17 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Http\Middleware\HandleCors.php(61): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#18 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Http\Middleware\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#19 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(137): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#20 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(175): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#21 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(144): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#22 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\MakesHttpRequests.php(607): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#23 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\MakesHttpRequests.php(573): Illuminate\Foundation\Testing\TestCase->call('DELETE', '/api/users/me/s...', Array, Array, Array, Array, '[]')
+#24 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\MakesHttpRequests.php(501): Illuminate\Foundation\Testing\TestCase->json('DELETE', '/api/users/me/s...', Array, Array, 0)
+#25 D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\User\UserControllerTest.php(104): Illuminate\Foundation\Testing\TestCase->deleteJson('/api/users/me/s...')
+#26 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\Framework\TestCase.php(1016): Tests\Feature\Http\Controllers\Api\User\UserControllerTest->test_destroy_session_revokes_token()
+#27 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\Framework\TestCase.php(619): PHPUnit\Framework\TestCase->runTest()
+#28 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\Framework\TestRunner.php(101): PHPUnit\Framework\TestCase->runBare()
+#29 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\Framework\TestCase.php(448): PHPUnit\Framework\TestRunner->run(Object(Tests\Feature\Http\Controllers\Api\User\UserControllerTest))
+#30 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\Framework\TestSuite.php(407): PHPUnit\Framework\TestCase->run()
+#31 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\Framework\TestSuite.php(407): PHPUnit\Framework\TestSuite->run()
+#32 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\Framework\TestSuite.php(407): PHPUnit\Framework\TestSuite->run()
+#33 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\TextUI\TestRunner.php(63): PHPUnit\Framework\TestSuite->run()
+#34 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\TextUI\Application.php(135): PHPUnit\TextUI\TestRunner->run(Object(PHPUnit\TextUI\Configuration\Configuration), Object(PHPUnit\Runner\ResultCache\DefaultResultCache), Object(PHPUnit\Framework\TestSuite))
+#35 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\phpunit(90): PHPUnit\TextUI\Application->run(Array)
+#36 D:\Backend-appVM\ApiProyecto\vendor\bin\phpunit(122): include('D:\\Backend-appV...')
+#37 {main}
+
+----------------------------------------------------------------------------------
+
+Session store not set on request.
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:174
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:16
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\User\UserControllerTest.php:106
+
+ERRORS!
+Tests: 166, Assertions: 561, Errors: 15, Failures: 28.
+
+Generating code coverage report in Clover XML format ... done [00:16.320]
+
+D:\Backend-appVM\ApiProyecto>php vendor/bin/phpunit
+PHPUnit 10.0.0 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.3.26 with Xdebug 3.5.0alpha3
+Configuration: D:\Backend-appVM\ApiProyecto\phpunit.xml
+
+........................................................"select * from "vm_sesiones" where "estado" = ? and datetime(date(fecha) || ' ' || hora_inicio) <= ? and datetime(date(fecha) || ' ' || hora_fin) >  ?" // app\Console\Commands\VmTickCommand.php:46
+"2025-03-10 10:00:00" // app\Console\Commands\VmTickCommand.php:46
+.......  63 / 221 ( 28%)
+F..FF..FF.FFFFF.......................FF.FFFFFF.F...F......EF.E 126 / 221 ( 57%)
+FFEF.F..FFFEEEEEEEE........EEEE................................ 189 / 221 ( 85%)
+................................                                221 / 221 (100%)
+
+Time: 09:47.734, Memory: 174.00 MB
+
+There were 15 errors:
+
+1) Tests\Feature\Http\Controllers\Api\Lookup\LookupControllerTest::test_ep_sedes_returns_list
+Illuminate\Database\UniqueConstraintViolationException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: ep_sede.escuela_profesional_id, ep_sede.sede_id (Connection: sqlite, SQL: insert into "ep_sede" ("escuela_profesional_id", "sede_id", "vigente_desde", "vigente_hasta", "updated_at", "created_at") values (1, 1, 1991-01-05 00:00:00, 1984-11-02 00:00:00, 2025-11-26 19:26:04, 2025-11-26 19:26:04))
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:570
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:811
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:778
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:559
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:523
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3853
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2235
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1436
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1401
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1240
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:370
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:271
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:365
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:325
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:315
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Lookup\LookupControllerTest.php:31
+
+Caused by
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: ep_sede.escuela_profesional_id, ep_sede.sede_id
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:570
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:811
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:778
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:559
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:523
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3853
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2235
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1436
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1401
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1240
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:370
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:271
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:365
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:325
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:315
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Lookup\LookupControllerTest.php:31
+
+2) Tests\Feature\Http\Controllers\Api\Lookup\LookupControllerTest::test_lookups_require_authentication
+Error: Call to a member function withAccessToken() on null
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\sanctum\src\Sanctum.php:82
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Lookup\LookupControllerTest.php:77
+
+3) Tests\Feature\Http\Controllers\Api\Matricula\MatriculaControllersTest::test_show_returns_matricula_details
+Error: Class "Database\Factories\MatriculaFactory" not found
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:950
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\HasFactory.php:21
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Matricula\MatriculaControllersTest.php:79
+
+4) Tests\Feature\Http\Controllers\Api\User\UserControllerTest::test_endpoints_require_authentication
+Error: Call to a member function withAccessToken() on null
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\sanctum\src\Sanctum.php:82
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\User\UserControllerTest.php:113
+
+5) Tests\Feature\Http\Controllers\Api\Vm\EventoControllerTest::test_index_returns_eventos
+Illuminate\Database\QueryException: SQLSTATE[23000]: Integrity constraint violation: 19 CHECK constraint failed: estado (Connection: sqlite, SQL: insert into "periodos_academicos" ("codigo", "anio", "ciclo", "estado", "es_actual", "fecha_inicio", "fecha_fin", "updated_at", "created_at") values (2024-1, 2024, 1, ACTIVO, 0, 2025-10-26 19:26:15, 2025-12-26 19:26:15, 2025-11-26 19:26:15, 2025-11-26 19:26:15))
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:570
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:811
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:778
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:559
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:523
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3853
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2235
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1436
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1401
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1240
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:370
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:271
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:365
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:321
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:315
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Vm\EventoControllerTest.php:49
+
+Caused by
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 CHECK constraint failed: estado
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:570
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:811
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:778
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:559
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:523
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3853
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2235
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1436
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1401
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1240
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:370
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:271
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:365
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:321
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:315
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Vm\EventoControllerTest.php:49
+
+6) Tests\Feature\Http\Controllers\Api\Vm\EventoControllerTest::test_store_creates_evento
+Illuminate\Database\QueryException: SQLSTATE[23000]: Integrity constraint violation: 19 CHECK constraint failed: estado (Connection: sqlite, SQL: insert into "periodos_academicos" ("codigo", "anio", "ciclo", "estado", "es_actual", "fecha_inicio", "fecha_fin", "updated_at", "created_at") values (2024-2, 2024, 2, ACTIVO, 0, 2025-10-26 19:26:15, 2025-12-26 19:26:15, 2025-11-26 19:26:15, 2025-11-26 19:26:15))
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:570
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:811
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:778
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:559
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:523
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3853
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2235
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1436
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1401
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1240
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:370
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:271
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:365
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:321
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:315
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Vm\EventoControllerTest.php:49
+
+Caused by
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 CHECK constraint failed: estado
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:570
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:811
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:778
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:559
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:523
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3853
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2235
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1436
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1401
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1240
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:370
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:271
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:365
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:321
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:315
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Vm\EventoControllerTest.php:49
+
+7) Tests\Feature\Http\Controllers\Api\Vm\EventoControllerTest::test_store_validates_required_fields
+Illuminate\Database\QueryException: SQLSTATE[23000]: Integrity constraint violation: 19 CHECK constraint failed: estado (Connection: sqlite, SQL: insert into "periodos_academicos" ("codigo", "anio", "ciclo", "estado", "es_actual", "fecha_inicio", "fecha_fin", "updated_at", "created_at") values (2025-1, 2025, 1, ACTIVO, 0, 2025-10-26 19:26:16, 2025-12-26 19:26:16, 2025-11-26 19:26:16, 2025-11-26 19:26:16))
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:570
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:811
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:778
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:559
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:523
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3853
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2235
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1436
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1401
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1240
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:370
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:271
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:365
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:321
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:315
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Vm\EventoControllerTest.php:49
+
+Caused by
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 CHECK constraint failed: estado
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:570
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:811
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:778
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:559
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:523
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3853
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2235
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1436
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1401
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1240
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:370
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:271
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:365
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:321
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:315
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Vm\EventoControllerTest.php:49
+
+8) Tests\Feature\Http\Controllers\Api\Vm\EventoControllerTest::test_store_requires_at_least_one_sesion
+Illuminate\Database\QueryException: SQLSTATE[23000]: Integrity constraint violation: 19 CHECK constraint failed: estado (Connection: sqlite, SQL: insert into "periodos_academicos" ("codigo", "anio", "ciclo", "estado", "es_actual", "fecha_inicio", "fecha_fin", "updated_at", "created_at") values (2025-2, 2025, 2, ACTIVO, 0, 2025-10-26 19:26:17, 2025-12-26 19:26:17, 2025-11-26 19:26:17, 2025-11-26 19:26:17))
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:570
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:811
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:778
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:559
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:523
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3853
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2235
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1436
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1401
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1240
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:370
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:271
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:365
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:321
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:315
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Vm\EventoControllerTest.php:49
+
+Caused by
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 CHECK constraint failed: estado
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:570
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:811
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:778
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:559
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:523
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3853
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2235
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1436
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1401
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1240
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:370
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:271
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:365
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:321
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:315
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Vm\EventoControllerTest.php:49
+
+9) Tests\Feature\Http\Controllers\Api\Vm\EventoControllerTest::test_show_returns_evento_details
+Illuminate\Database\QueryException: SQLSTATE[23000]: Integrity constraint violation: 19 CHECK constraint failed: estado (Connection: sqlite, SQL: insert into "periodos_academicos" ("codigo", "anio", "ciclo", "estado", "es_actual", "fecha_inicio", "fecha_fin", "updated_at", "created_at") values (2026-1, 2026, 1, ACTIVO, 0, 2025-10-26 19:26:17, 2025-12-26 19:26:17, 2025-11-26 19:26:17, 2025-11-26 19:26:17))
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:570
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:811
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:778
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:559
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:523
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3853
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2235
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1436
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1401
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1240
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:370
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:271
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:365
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:321
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:315
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Vm\EventoControllerTest.php:49
+
+Caused by
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 CHECK constraint failed: estado
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:570
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:811
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:778
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:559
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:523
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3853
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2235
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1436
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1401
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1240
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:370
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:271
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:365
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:321
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:315
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Vm\EventoControllerTest.php:49
+
+10) Tests\Feature\Http\Controllers\Api\Vm\EventoControllerTest::test_destroy_deletes_evento
+Illuminate\Database\QueryException: SQLSTATE[23000]: Integrity constraint violation: 19 CHECK constraint failed: estado (Connection: sqlite, SQL: insert into "periodos_academicos" ("codigo", "anio", "ciclo", "estado", "es_actual", "fecha_inicio", "fecha_fin", "updated_at", "created_at") values (2026-2, 2026, 2, ACTIVO, 0, 2025-10-26 19:26:18, 2025-12-26 19:26:18, 2025-11-26 19:26:18, 2025-11-26 19:26:18))
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:570
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:811
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:778
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:559
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:523
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3853
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2235
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1436
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1401
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1240
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:370
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:271
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:365
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:321
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:315
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Vm\EventoControllerTest.php:49
+
+Caused by
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 CHECK constraint failed: estado
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:570
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:811
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:778
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:559
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:523
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3853
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2235
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1436
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1401
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1240
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:370
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:271
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:365
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:321
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:315
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Vm\EventoControllerTest.php:49
+
+11) Tests\Feature\Http\Controllers\Api\Vm\EventoControllerTest::test_endpoints_require_permissions
+Illuminate\Database\QueryException: SQLSTATE[23000]: Integrity constraint violation: 19 CHECK constraint failed: estado (Connection: sqlite, SQL: insert into "periodos_academicos" ("codigo", "anio", "ciclo", "estado", "es_actual", "fecha_inicio", "fecha_fin", "updated_at", "created_at") values (2027-1, 2027, 1, ACTIVO, 0, 2025-10-26 19:26:19, 2025-12-26 19:26:19, 2025-11-26 19:26:19, 2025-11-26 19:26:19))
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:570
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:811
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:778
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:559
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:523
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3853
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2235
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1436
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1401
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1240
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:370
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:271
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:365
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:321
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:315
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Vm\EventoControllerTest.php:49
+
+Caused by
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 CHECK constraint failed: estado
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:570
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:811
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:778
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:559
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:523
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3853
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2235
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1436
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1401
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1240
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:370
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:271
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:365
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:321
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:315
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Vm\EventoControllerTest.php:49
+
+12) Tests\Feature\Http\Controllers\Api\Vm\VmControllersTest::test_inscripcion_proyecto_enrolls_student
+Illuminate\Database\QueryException: SQLSTATE[23000]: Integrity constraint violation: 19 CHECK constraint failed: estado (Connection: sqlite, SQL: insert into "periodos_academicos" ("codigo", "anio", "ciclo", "estado", "es_actual", "fecha_inicio", "fecha_fin", "updated_at", "created_at") values (2031-2, 2031, 2, ACTIVO, 0, 2025-10-26 19:26:26, 2025-12-26 19:26:26, 2025-11-26 19:26:26, 2025-11-26 19:26:26))
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:570
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:811
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:778
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:559
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:523
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3853
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2235
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1436
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1401
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1240
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:370
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:271
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:365
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:321
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:315
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Vm\VmControllersTest.php:36
+
+Caused by
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 CHECK constraint failed: estado
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:570
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:811
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:778
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:559
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:523
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3853
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2235
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1436
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1401
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1240
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:370
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:271
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:365
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:321
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:315
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Vm\VmControllersTest.php:36
+
+13) Tests\Feature\Http\Controllers\Api\Vm\VmControllersTest::test_inscripcion_evento_enrolls_student
+Illuminate\Database\QueryException: SQLSTATE[23000]: Integrity constraint violation: 19 CHECK constraint failed: estado (Connection: sqlite, SQL: insert into "periodos_academicos" ("codigo", "anio", "ciclo", "estado", "es_actual", "fecha_inicio", "fecha_fin", "updated_at", "created_at") values (2032-1, 2032, 1, ACTIVO, 0, 2025-10-26 19:26:26, 2025-12-26 19:26:26, 2025-11-26 19:26:26, 2025-11-26 19:26:26))
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:570
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:811
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:778
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:559
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:523
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3853
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2235
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1436
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1401
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1240
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:370
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:271
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:365
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:321
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:315
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Vm\VmControllersTest.php:36
+
+Caused by
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 CHECK constraint failed: estado
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:570
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:811
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:778
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:559
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:523
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3853
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2235
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1436
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1401
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1240
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:370
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:271
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:365
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:321
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:315
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Vm\VmControllersTest.php:36
+
+14) Tests\Feature\Http\Controllers\Api\Vm\VmControllersTest::test_agenda_alumno_returns_schedule
+Illuminate\Database\QueryException: SQLSTATE[23000]: Integrity constraint violation: 19 CHECK constraint failed: estado (Connection: sqlite, SQL: insert into "periodos_academicos" ("codigo", "anio", "ciclo", "estado", "es_actual", "fecha_inicio", "fecha_fin", "updated_at", "created_at") values (2032-2, 2032, 2, ACTIVO, 0, 2025-10-26 19:26:26, 2025-12-26 19:26:26, 2025-11-26 19:26:26, 2025-11-26 19:26:26))
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:570
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:811
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:778
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:559
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:523
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3853
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2235
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1436
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1401
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1240
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:370
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:271
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:365
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:321
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:315
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Vm\VmControllersTest.php:36
+
+Caused by
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 CHECK constraint failed: estado
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:570
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:811
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:778
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:559
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:523
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3853
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2235
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1436
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1401
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1240
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:370
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:271
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:365
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:321
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:315
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Vm\VmControllersTest.php:36
+
+15) Tests\Feature\Http\Controllers\Api\Vm\VmControllersTest::test_categorias_evento_index_returns_list
+Illuminate\Database\QueryException: SQLSTATE[23000]: Integrity constraint violation: 19 CHECK constraint failed: estado (Connection: sqlite, SQL: insert into "periodos_academicos" ("codigo", "anio", "ciclo", "estado", "es_actual", "fecha_inicio", "fecha_fin", "updated_at", "created_at") values (2033-1, 2033, 1, ACTIVO, 0, 2025-10-26 19:26:27, 2025-12-26 19:26:27, 2025-11-26 19:26:27, 2025-11-26 19:26:27))
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:570
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:811
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:778
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:559
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:523
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3853
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2235
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1436
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1401
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1240
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:370
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:271
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:365
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:321
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:315
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Vm\VmControllersTest.php:36
+
+Caused by
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 CHECK constraint failed: estado
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:570
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:811
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:778
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:559
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Connection.php:523
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Processors\Processor.php:32
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:3853
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php:2235
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1436
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1401
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:1240
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:370
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:271
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:365
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:321
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Factories\Factory.php:315
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Vm\VmControllersTest.php:36
+
+--
+
+There were 28 failures:
+
+1) Tests\Feature\Http\Controllers\Api\Academico\EscuelaProfesionalApiControllerTest::test_show_returns_escuela_with_relations
+Unable to find JSON:
+
+[{
+    "data": {
+        "id": 1,
+        "codigo": "EP092",
+        "nombre": "Mining Machine Operator",
+        "facultad_id": 1
+    }
+}]
+
+within response JSON:
+
+[{
+    "data": {
+        "id": null,
+        "codigo": null,
+        "nombre": null,
+        "facultad_id": null,
+        "facultad": null,
+        "sedes": [],
+        "meta": {
+            "created_at": null,
+            "updated_at": null
+        }
+    }
+}].
+
+
+Failed asserting that an array has the subset Array &0 [
+    'data' => Array &1 [
+        'id' => 1,
+        'codigo' => 'EP092',
+        'nombre' => 'Mining Machine Operator',
+        'facultad_id' => 1,
+    ],
+].
+--- Expected
++++ Actual
+@@ @@
+ array (
+   'data' =>
+   array (
+-    'id' => 1,
+-    'codigo' => 'EP092',
+-    'nombre' => 'Mining Machine Operator',
+-    'facultad_id' => 1,
++    'id' => NULL,
++    'codigo' => NULL,
++    'nombre' => NULL,
++    'facultad_id' => NULL,
+     'facultad' => NULL,
+     'sedes' =>
+     array (
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\Constraints\ArraySubset.php:80
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\Assert.php:36
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\AssertableJsonString.php:319
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:833
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Academico\EscuelaProfesionalApiControllerTest.php:87
+
+2) Tests\Feature\Http\Controllers\Api\Academico\EscuelaProfesionalApiControllerTest::test_update_modifies_existing_escuela
+Expected response status code [200] but received 422.
+Failed asserting that 422 is identical to 200.
+
+The following errors occurred during the last request:
+
+{
+    "message": "The codigo has already been taken.",
+    "errors": {
+        "codigo": [
+            "The codigo has already been taken."
+        ]
+    }
+}
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:174
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:16
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Academico\EscuelaProfesionalApiControllerTest.php:149
+
+3) Tests\Feature\Http\Controllers\Api\Academico\EscuelaProfesionalApiControllerTest::test_destroy_deletes_escuela
+Failed asserting that a row in the table [escuelas_profesionales] does not match the attributes {
+    "id": 1
+}.
+
+Found similar results: [
+    {
+        "id": 1
+    }
+].
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\InteractsWithDatabase.php:79
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Academico\EscuelaProfesionalApiControllerTest.php:172
+
+4) Tests\Feature\Http\Controllers\Api\Academico\EscuelaProfesionalApiControllerTest::test_update_sede_vigencia_modifies_dates
+Expected response status code [204] but received 404.
+Failed asserting that 404 is identical to 204.
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:174
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:47
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Academico\EscuelaProfesionalApiControllerTest.php:246
+
+5) Tests\Feature\Http\Controllers\Api\Academico\EscuelaProfesionalApiControllerTest::test_detach_sede_removes_relationship
+Expected response status code [204] but received 404.
+Failed asserting that 404 is identical to 204.
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:174
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:47
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Academico\EscuelaProfesionalApiControllerTest.php:270
+
+6) Tests\Feature\Http\Controllers\Api\Academico\ExpedienteControllerTest::test_store_creates_new_expediente
+Expected response status code [201] but received 404.
+Failed asserting that 404 is identical to 201.
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:174
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:26
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Academico\ExpedienteControllerTest.php:56
+
+7) Tests\Feature\Http\Controllers\Api\Academico\ExpedienteControllerTest::test_store_updates_existing_expediente_if_duplicate
+Expected response status code [200] but received 404.
+Failed asserting that 404 is identical to 200.
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:174
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:16
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Academico\ExpedienteControllerTest.php:100
+
+8) Tests\Feature\Http\Controllers\Api\Academico\ExpedienteControllerTest::test_store_validates_required_fields
+Expected response status code [422] but received 404.
+Failed asserting that 404 is identical to 422.
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:174
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:221
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Academico\ExpedienteControllerTest.php:122
+
+9) Tests\Feature\Http\Controllers\Api\Academico\ExpedienteControllerTest::test_store_requires_permission
+Expected response status code [403] but received 404.
+Failed asserting that 404 is identical to 403.
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:174
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:141
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Academico\ExpedienteControllerTest.php:140
+
+10) Tests\Feature\Http\Controllers\Api\Academico\ExpedienteControllerTest::test_store_sets_default_values
+Expected response status code [201] but received 404.
+Failed asserting that 404 is identical to 201.
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:174
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:26
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Academico\ExpedienteControllerTest.php:160
+
+11) Tests\Feature\Http\Controllers\Api\Admin\AdminControllersTest::test_index_returns_universidades
+Expected response status code [200] but received 404.
+Failed asserting that 404 is identical to 200.
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:174
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:16
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Admin\AdminControllersTest.php:28
+
+12) Tests\Feature\Http\Controllers\Api\Admin\AdminControllersTest::test_store_creates_universidad
+Expected response status code [201] but received 404.
+Failed asserting that 404 is identical to 201.
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:174
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:26
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Admin\AdminControllersTest.php:48
+
+13) Tests\Feature\Http\Controllers\Api\EpSede\EpSedeStaffControllerTest::test_current_returns_current_staff
+Failed asserting that an array has the key 'coordinador'.
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\AssertableJsonString.php:303
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:978
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\EpSede\EpSedeStaffControllerTest.php:69
+
+14) Tests\Feature\Http\Controllers\Api\EpSede\EpSedeStaffControllerTest::test_history_returns_staff_changes
+Failed asserting that an array has the key 'data'.
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\AssertableJsonString.php:299
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:978
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\EpSede\EpSedeStaffControllerTest.php:81
+
+15) Tests\Feature\Http\Controllers\Api\EpSede\EpSedeStaffControllerTest::test_assign_assigns_coordinador_to_ep_sede
+Expected response status code [200] but received 403.
+Failed asserting that 403 is identical to 200.
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:174
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:16
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\EpSede\EpSedeStaffControllerTest.php:108
+
+16) Tests\Feature\Http\Controllers\Api\EpSede\EpSedeStaffControllerTest::test_assign_assigns_encargado_to_ep_sede
+Expected response status code [200] but received 403.
+Failed asserting that 403 is identical to 200.
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:174
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:16
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\EpSede\EpSedeStaffControllerTest.php:134
+
+17) Tests\Feature\Http\Controllers\Api\EpSede\EpSedeStaffControllerTest::test_unassign_removes_staff_role
+Expected response status code [200] but received 403.
+Failed asserting that 403 is identical to 200.
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:174
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:16
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\EpSede\EpSedeStaffControllerTest.php:160
+
+18) Tests\Feature\Http\Controllers\Api\EpSede\EpSedeStaffControllerTest::test_delegate_creates_interim_encargado
+Expected response status code [200] but received 403.
+Failed asserting that 403 is identical to 200.
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:174
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:16
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\EpSede\EpSedeStaffControllerTest.php:185
+
+19) Tests\Feature\Http\Controllers\Api\EpSede\EpSedeStaffControllerTest::test_create_and_assign_creates_user_and_assigns_role
+Expected response status code [201] but received 500.
+Failed asserting that 500 is identical to 201.
+
+The following exception occurred during the last request:
+
+Illuminate\Validation\ValidationException: The doc numero field is required. in D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Support\helpers.php:420
+Stack trace:
+#0 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Validation\Validator.php(558): throw_if(true, 'Illuminate\\Vali...', Object(Illuminate\Validation\Validator))
+#1 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Foundation\Providers\FoundationServiceProvider.php(156): Illuminate\Validation\Validator->validate()
+#2 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Macroable\Traits\Macroable.php(126): Illuminate\Http\Request->Illuminate\Foundation\Providers\{closure}(Array)
+#3 D:\Backend-appVM\ApiProyecto\app\Http\Controllers\Api\EpSede\EpSedeStaffController.php(449): Illuminate\Http\Request->__call('validate', Array)
+#4 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php(46): App\Http\Controllers\Api\EpSede\EpSedeStaffController->createAndAssign(Object(Illuminate\Http\Request), 1, Object(App\Services\EpSede\StaffAssignmentService))
+#5 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\Route.php(265): Illuminate\Routing\ControllerDispatcher->dispatch(Object(Illuminate\Routing\Route), Object(App\Http\Controllers\Api\EpSede\EpSedeStaffController), 'createAndAssign')
+#6 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\Route.php(211): Illuminate\Routing\Route->runController()
+#7 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\Router.php(822): Illuminate\Routing\Route->run()
+#8 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(180): Illuminate\Routing\Router->Illuminate\Routing\{closure}(Object(Illuminate\Http\Request))
+#9 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\Middleware\SubstituteBindings.php(50): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#10 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Routing\Middleware\SubstituteBindings->handle(Object(Illuminate\Http\Request), Object(Closure))
+#11 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Auth\Middleware\Authenticate.php(63): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#12 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Auth\Middleware\Authenticate->handle(Object(Illuminate\Http\Request), Object(Closure), 'sanctum')
+#13 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(137): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#14 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\Router.php(821): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#15 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\Router.php(800): Illuminate\Routing\Router->runRouteWithinStack(Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request))
+#16 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\Router.php(764): Illuminate\Routing\Router->runRoute(Object(Illuminate\Http\Request), Object(Illuminate\Routing\Route))
+#17 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\Router.php(753): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#18 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(200): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#19 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(180): Illuminate\Foundation\Http\Kernel->Illuminate\Foundation\Http\{closure}(Object(Illuminate\Http\Request))
+#20 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Http\Middleware\HandleCors.php(61): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#21 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Http\Middleware\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#22 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(137): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#23 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(175): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#24 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(144): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#25 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\MakesHttpRequests.php(607): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#26 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\MakesHttpRequests.php(573): Illuminate\Foundation\Testing\TestCase->call('POST', '/api/ep-sedes/1...', Array, Array, Array, Array, '{"username":"nu...')
+#27 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\MakesHttpRequests.php(411): Illuminate\Foundation\Testing\TestCase->json('POST', '/api/ep-sedes/1...', Array, Array, 0)
+#28 D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\EpSede\EpSedeStaffControllerTest.php(234): Illuminate\Foundation\Testing\TestCase->postJson('/api/ep-sedes/1...', Array)
+#29 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\Framework\TestCase.php(1016): Tests\Feature\Http\Controllers\Api\EpSede\EpSedeStaffControllerTest->test_create_and_assign_creates_user_and_assigns_role()
+#30 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\Framework\TestCase.php(619): PHPUnit\Framework\TestCase->runTest()
+#31 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\Framework\TestRunner.php(101): PHPUnit\Framework\TestCase->runBare()
+#32 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\Framework\TestCase.php(448): PHPUnit\Framework\TestRunner->run(Object(Tests\Feature\Http\Controllers\Api\EpSede\EpSedeStaffControllerTest))
+#33 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\Framework\TestSuite.php(407): PHPUnit\Framework\TestCase->run()
+#34 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\Framework\TestSuite.php(407): PHPUnit\Framework\TestSuite->run()
+#35 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\Framework\TestSuite.php(407): PHPUnit\Framework\TestSuite->run()
+#36 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\TextUI\TestRunner.php(63): PHPUnit\Framework\TestSuite->run()
+#37 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\TextUI\Application.php(135): PHPUnit\TextUI\TestRunner->run(Object(PHPUnit\TextUI\Configuration\Configuration), Object(PHPUnit\Runner\ResultCache\DefaultResultCache), Object(PHPUnit\Framework\TestSuite))
+#38 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\phpunit(90): PHPUnit\TextUI\Application->run(Array)
+#39 D:\Backend-appVM\ApiProyecto\vendor\bin\phpunit(122): include('D:\\Backend-appV...')
+#40 {main}
+
+----------------------------------------------------------------------------------
+
+The doc numero field is required.
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:174
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:26
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\EpSede\EpSedeStaffControllerTest.php:236
+
+20) Tests\Feature\Http\Controllers\Api\Login\AuthControllerTest::test_lookup_includes_active_expediente
+Failed asserting that an array has the key 'id'.
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\AssertableJsonString.php:303
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\AssertableJsonString.php:278
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\AssertableJsonString.php:301
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:978
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Login\AuthControllerTest.php:65
+
+21) Tests\Feature\Http\Controllers\Api\Lookup\LookupControllerTest::test_periodos_returns_academic_periods
+Failed asserting that an array has the key 'data'.
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\AssertableJsonString.php:299
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:978
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Lookup\LookupControllerTest.php:50
+
+22) Tests\Feature\Http\Controllers\Api\Matricula\MatriculaControllersTest::test_index_returns_matriculas
+Expected response status code [200] but received 404.
+Failed asserting that 404 is identical to 200.
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:174
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:16
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Matricula\MatriculaControllersTest.php:26
+
+23) Tests\Feature\Http\Controllers\Api\Matricula\MatriculaControllersTest::test_store_creates_matricula
+Expected response status code [201] but received 404.
+Failed asserting that 404 is identical to 201.
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:174
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:26
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Matricula\MatriculaControllersTest.php:61
+
+24) Tests\Feature\Http\Controllers\Api\Reportes\ReportesControllersTest::test_reporte_vm_endpoints_accessible
+Expected response status code [200] but received 404.
+Failed asserting that 404 is identical to 200.
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:174
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:16
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\Reportes\ReportesControllersTest.php:26
+
+25) Tests\Feature\Http\Controllers\Api\User\UserControllerTest::test_me_returns_current_user_profile
+Unable to find JSON:
+
+[{
+    "id": 1,
+    "username": "zrippin",
+    "email": "kuhlman.stuart@example.net"
+}]
+
+within response JSON:
+
+[{
+    "ok": true,
+    "user": {
+        "id": 1,
+        "username": "zrippin",
+        "first_name": "Marley",
+        "last_name": "Treutel",
+        "full_name": "Marley Treutel",
+        "email": "kuhlman.stuart@example.net",
+        "status": "active",
+        "doc_tipo": null,
+        "doc_numero": null,
+        "celular": null,
+        "pais": null,
+        "religion": null,
+        "fecha_nacimiento": null,
+        "profile_photo": null,
+        "profile_photo_url": null,
+        "roles": [],
+        "rol_principal": null,
+        "permissions": [],
+        "permissions_map": [],
+        "expediente_activo": null,
+        "expedientes": []
+    }
+}].
+
+
+Failed asserting that an array has the subset Array &0 [
+    'id' => 1,
+    'username' => 'zrippin',
+    'email' => 'kuhlman.stuart@example.net',
+].
+--- Expected
++++ Actual
+@@ @@
+     array (
+     ),
+   ),
+-  'id' => 1,
+-  'username' => 'zrippin',
+-  'email' => 'kuhlman.stuart@example.net',
+ )
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\Constraints\ArraySubset.php:80
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\Assert.php:36
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\AssertableJsonString.php:319
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:833
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\User\UserControllerTest.php:30
+
+26) Tests\Feature\Http\Controllers\Api\User\UserControllerTest::test_show_by_username_finds_user
+Expected response status code [200] but received 403.
+Failed asserting that 403 is identical to 200.
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:174
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:16
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\User\UserControllerTest.php:81
+
+27) Tests\Feature\Http\Controllers\Api\User\UserControllerTest::test_sessions_returns_user_sessions
+Expected response status code [200] but received 500.
+Failed asserting that 500 is identical to 200.
+
+The following exception occurred during the last request:
+
+RuntimeException: Session store not set on request. in D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Http\Request.php:608
+Stack trace:
+#0 D:\Backend-appVM\ApiProyecto\app\Http\Controllers\Api\User\UserController.php(191): Illuminate\Http\Request->session()
+#1 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php(46): App\Http\Controllers\Api\User\UserController->sessions(Object(Illuminate\Http\Request))
+#2 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\Route.php(265): Illuminate\Routing\ControllerDispatcher->dispatch(Object(Illuminate\Routing\Route), Object(App\Http\Controllers\Api\User\UserController), 'sessions')
+#3 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\Route.php(211): Illuminate\Routing\Route->runController()
+#4 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\Router.php(822): Illuminate\Routing\Route->run()
+#5 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(180): Illuminate\Routing\Router->Illuminate\Routing\{closure}(Object(Illuminate\Http\Request))
+#6 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\Middleware\SubstituteBindings.php(50): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#7 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Routing\Middleware\SubstituteBindings->handle(Object(Illuminate\Http\Request), Object(Closure))
+#8 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Auth\Middleware\Authenticate.php(63): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#9 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Auth\Middleware\Authenticate->handle(Object(Illuminate\Http\Request), Object(Closure), 'sanctum')
+#10 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(137): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#11 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\Router.php(821): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#12 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\Router.php(800): Illuminate\Routing\Router->runRouteWithinStack(Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request))
+#13 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\Router.php(764): Illuminate\Routing\Router->runRoute(Object(Illuminate\Http\Request), Object(Illuminate\Routing\Route))
+#14 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\Router.php(753): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#15 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(200): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#16 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(180): Illuminate\Foundation\Http\Kernel->Illuminate\Foundation\Http\{closure}(Object(Illuminate\Http\Request))
+#17 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Http\Middleware\HandleCors.php(61): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#18 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Http\Middleware\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#19 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(137): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#20 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(175): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#21 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(144): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#22 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\MakesHttpRequests.php(607): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#23 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\MakesHttpRequests.php(573): Illuminate\Foundation\Testing\TestCase->call('GET', '/api/users/me/s...', Array, Array, Array, Array, '[]')
+#24 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\MakesHttpRequests.php(381): Illuminate\Foundation\Testing\TestCase->json('GET', '/api/users/me/s...', Array, Array, 0)
+#25 D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\User\UserControllerTest.php(92): Illuminate\Foundation\Testing\TestCase->getJson('/api/users/me/s...')
+#26 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\Framework\TestCase.php(1016): Tests\Feature\Http\Controllers\Api\User\UserControllerTest->test_sessions_returns_user_sessions()
+#27 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\Framework\TestCase.php(619): PHPUnit\Framework\TestCase->runTest()
+#28 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\Framework\TestRunner.php(101): PHPUnit\Framework\TestCase->runBare()
+#29 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\Framework\TestCase.php(448): PHPUnit\Framework\TestRunner->run(Object(Tests\Feature\Http\Controllers\Api\User\UserControllerTest))
+#30 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\Framework\TestSuite.php(407): PHPUnit\Framework\TestCase->run()
+#31 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\Framework\TestSuite.php(407): PHPUnit\Framework\TestSuite->run()
+#32 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\Framework\TestSuite.php(407): PHPUnit\Framework\TestSuite->run()
+#33 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\TextUI\TestRunner.php(63): PHPUnit\Framework\TestSuite->run()
+#34 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\TextUI\Application.php(135): PHPUnit\TextUI\TestRunner->run(Object(PHPUnit\TextUI\Configuration\Configuration), Object(PHPUnit\Runner\ResultCache\DefaultResultCache), Object(PHPUnit\Framework\TestSuite))
+#35 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\phpunit(90): PHPUnit\TextUI\Application->run(Array)
+#36 D:\Backend-appVM\ApiProyecto\vendor\bin\phpunit(122): include('D:\\Backend-appV...')
+#37 {main}
+
+----------------------------------------------------------------------------------
+
+Session store not set on request.
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:174
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:16
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\User\UserControllerTest.php:94
+
+28) Tests\Feature\Http\Controllers\Api\User\UserControllerTest::test_destroy_session_revokes_token
+Expected response status code [200] but received 500.
+Failed asserting that 500 is identical to 200.
+
+The following exception occurred during the last request:
+
+RuntimeException: Session store not set on request. in D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Http\Request.php:608
+Stack trace:
+#0 D:\Backend-appVM\ApiProyecto\app\Http\Controllers\Api\User\UserController.php(230): Illuminate\Http\Request->session()
+#1 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php(46): App\Http\Controllers\Api\User\UserController->destroySession(Object(Illuminate\Http\Request), '1')
+#2 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\Route.php(265): Illuminate\Routing\ControllerDispatcher->dispatch(Object(Illuminate\Routing\Route), Object(App\Http\Controllers\Api\User\UserController), 'destroySession')
+#3 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\Route.php(211): Illuminate\Routing\Route->runController()
+#4 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\Router.php(822): Illuminate\Routing\Route->run()
+#5 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(180): Illuminate\Routing\Router->Illuminate\Routing\{closure}(Object(Illuminate\Http\Request))
+#6 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\Middleware\SubstituteBindings.php(50): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#7 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Routing\Middleware\SubstituteBindings->handle(Object(Illuminate\Http\Request), Object(Closure))
+#8 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Auth\Middleware\Authenticate.php(63): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#9 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Auth\Middleware\Authenticate->handle(Object(Illuminate\Http\Request), Object(Closure), 'sanctum')
+#10 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(137): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#11 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\Router.php(821): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#12 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\Router.php(800): Illuminate\Routing\Router->runRouteWithinStack(Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request))
+#13 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\Router.php(764): Illuminate\Routing\Router->runRoute(Object(Illuminate\Http\Request), Object(Illuminate\Routing\Route))
+#14 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Routing\Router.php(753): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#15 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(200): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#16 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(180): Illuminate\Foundation\Http\Kernel->Illuminate\Foundation\Http\{closure}(Object(Illuminate\Http\Request))
+#17 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Http\Middleware\HandleCors.php(61): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#18 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Http\Middleware\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#19 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(137): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#20 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(175): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#21 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(144): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#22 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\MakesHttpRequests.php(607): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#23 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\MakesHttpRequests.php(573): Illuminate\Foundation\Testing\TestCase->call('DELETE', '/api/users/me/s...', Array, Array, Array, Array, '[]')
+#24 D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\MakesHttpRequests.php(501): Illuminate\Foundation\Testing\TestCase->json('DELETE', '/api/users/me/s...', Array, Array, 0)
+#25 D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\User\UserControllerTest.php(104): Illuminate\Foundation\Testing\TestCase->deleteJson('/api/users/me/s...')
+#26 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\Framework\TestCase.php(1016): Tests\Feature\Http\Controllers\Api\User\UserControllerTest->test_destroy_session_revokes_token()
+#27 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\Framework\TestCase.php(619): PHPUnit\Framework\TestCase->runTest()
+#28 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\Framework\TestRunner.php(101): PHPUnit\Framework\TestCase->runBare()
+#29 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\Framework\TestCase.php(448): PHPUnit\Framework\TestRunner->run(Object(Tests\Feature\Http\Controllers\Api\User\UserControllerTest))
+#30 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\Framework\TestSuite.php(407): PHPUnit\Framework\TestCase->run()
+#31 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\Framework\TestSuite.php(407): PHPUnit\Framework\TestSuite->run()
+#32 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\Framework\TestSuite.php(407): PHPUnit\Framework\TestSuite->run()
+#33 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\TextUI\TestRunner.php(63): PHPUnit\Framework\TestSuite->run()
+#34 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\src\TextUI\Application.php(135): PHPUnit\TextUI\TestRunner->run(Object(PHPUnit\TextUI\Configuration\Configuration), Object(PHPUnit\Runner\ResultCache\DefaultResultCache), Object(PHPUnit\Framework\TestSuite))
+#35 D:\Backend-appVM\ApiProyecto\vendor\phpunit\phpunit\phpunit(90): PHPUnit\TextUI\Application->run(Array)
+#36 D:\Backend-appVM\ApiProyecto\vendor\bin\phpunit(122): include('D:\\Backend-appV...')
+#37 {main}
+
+----------------------------------------------------------------------------------
+
+Session store not set on request.
+
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:174
+D:\Backend-appVM\ApiProyecto\vendor\laravel\framework\src\Illuminate\Testing\Concerns\AssertsStatusCodes.php:16
+D:\Backend-appVM\ApiProyecto\tests\feature\Http\Controllers\Api\User\UserControllerTest.php:106
+
+ERRORS!
+Tests: 221, Assertions: 668, Errors: 15, Failures: 28.
+
+Generating code coverage report in Clover XML format ... done [00:00.105]
+
+D:\Backend-appVM\ApiProyecto>
