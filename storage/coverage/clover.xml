@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1764149988">
-  <project timestamp="1764149988">
+<coverage generated="1764150818">
+  <project timestamp="1764150818">
     <file name="D:\Backend-appVM\ApiProyecto\app\Console\Commands\EpAutoCloseInterinos.php">
       <class name="App\Console\Commands\EpAutoCloseInterinos" namespace="global">
         <metrics complexity="4" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="29" coveredstatements="0" elements="30" coveredelements="0"/>
@@ -8189,34 +8189,34 @@
       <class name="App\Providers\AppServiceProvider" namespace="global">
         <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="26" coveredstatements="26" elements="28" coveredelements="28"/>
       </class>
-      <line num="20" type="method" name="register" visibility="public" complexity="1" crap="1" count="6"/>
-      <line num="23" type="stmt" count="6"/>
-      <line num="25" type="method" name="boot" visibility="public" complexity="1" crap="1" count="6"/>
-      <line num="27" type="stmt" count="6"/>
-      <line num="28" type="stmt" count="6"/>
-      <line num="29" type="stmt" count="6"/>
-      <line num="30" type="stmt" count="6"/>
-      <line num="31" type="stmt" count="6"/>
-      <line num="32" type="stmt" count="6"/>
-      <line num="33" type="stmt" count="6"/>
-      <line num="34" type="stmt" count="6"/>
-      <line num="35" type="stmt" count="6"/>
-      <line num="36" type="stmt" count="6"/>
-      <line num="38" type="stmt" count="6"/>
-      <line num="39" type="stmt" count="6"/>
-      <line num="40" type="stmt" count="6"/>
-      <line num="41" type="stmt" count="6"/>
-      <line num="42" type="stmt" count="6"/>
-      <line num="43" type="stmt" count="6"/>
-      <line num="44" type="stmt" count="6"/>
-      <line num="45" type="stmt" count="6"/>
-      <line num="46" type="stmt" count="6"/>
-      <line num="47" type="stmt" count="6"/>
-      <line num="48" type="stmt" count="6"/>
-      <line num="49" type="stmt" count="6"/>
-      <line num="50" type="stmt" count="6"/>
-      <line num="52" type="stmt" count="6"/>
-      <line num="55" type="stmt" count="6"/>
+      <line num="20" type="method" name="register" visibility="public" complexity="1" crap="1" count="4"/>
+      <line num="23" type="stmt" count="4"/>
+      <line num="25" type="method" name="boot" visibility="public" complexity="1" crap="1" count="4"/>
+      <line num="27" type="stmt" count="4"/>
+      <line num="28" type="stmt" count="4"/>
+      <line num="29" type="stmt" count="4"/>
+      <line num="30" type="stmt" count="4"/>
+      <line num="31" type="stmt" count="4"/>
+      <line num="32" type="stmt" count="4"/>
+      <line num="33" type="stmt" count="4"/>
+      <line num="34" type="stmt" count="4"/>
+      <line num="35" type="stmt" count="4"/>
+      <line num="36" type="stmt" count="4"/>
+      <line num="38" type="stmt" count="4"/>
+      <line num="39" type="stmt" count="4"/>
+      <line num="40" type="stmt" count="4"/>
+      <line num="41" type="stmt" count="4"/>
+      <line num="42" type="stmt" count="4"/>
+      <line num="43" type="stmt" count="4"/>
+      <line num="44" type="stmt" count="4"/>
+      <line num="45" type="stmt" count="4"/>
+      <line num="46" type="stmt" count="4"/>
+      <line num="47" type="stmt" count="4"/>
+      <line num="48" type="stmt" count="4"/>
+      <line num="49" type="stmt" count="4"/>
+      <line num="50" type="stmt" count="4"/>
+      <line num="52" type="stmt" count="4"/>
+      <line num="55" type="stmt" count="4"/>
       <metrics loc="62" ncloc="56" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="26" coveredstatements="26" elements="28" coveredelements="28"/>
     </file>
     <file name="D:\Backend-appVM\ApiProyecto\app\Providers\RepositoryServiceProvider.php">
